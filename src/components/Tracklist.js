@@ -1,6 +1,7 @@
 import { Search } from "./Search";
 import { Filter } from "./Filter";
 import { Track } from "./Track";
+import { TrackSkeleton } from "./TrackSkeleton";
 import './Tracklist.css'
 
 
@@ -25,9 +26,19 @@ const items = [
 ];
 
 
-export function Tracklist() {
+export function Tracklist({ isLoading }) {
   const listItem = items.map(item =>
-    <Track track={item} key={item.id}/>
+    isLoading 
+    ? <TrackSkeleton /> 
+    : <Track
+        comment={item.comment}
+        link={item.link}
+        name={item.name}
+        singer={item.singer}
+        album={item.album}
+        time={item.time}
+        key={item.id}
+      />
   )
 
   return (
@@ -46,7 +57,9 @@ export function Tracklist() {
           </svg>
         </div>
       </div>
-      <div className="content__playlist playlist">{listItem}</div>
+      <div className="content__playlist playlist">
+        {listItem}
+      </div>
     </div>
   </div>
   )
