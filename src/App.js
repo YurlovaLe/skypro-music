@@ -3,6 +3,7 @@ import { MenuList } from './components/MenuList';
 import { Player } from './components/Player';
 import { Sidebar } from "./components/Sidebar";
 import { Tracklist } from "./components/Tracklist";
+import { tracks } from './mocks/tracks';
 import './App.css';
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
       <div className="container">
         <main className="main">
           <MenuList />
-          <Tracklist isLoading={isLoading} />
+          <Tracklist isLoading={isLoading} items={tracks}/>
           <div className="main__sidebar sidebar">
             <div className="sidebar__personal">
               <p className="sidebar__personal-name">Sergey.Ivanov</p>
