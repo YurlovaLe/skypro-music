@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MenuList } from './components/MenuList';
+import { MenuList } from './components/MenuList/MenuList';
 import { Player } from './components/Player';
 import { Sidebar } from "./components/Sidebar";
 import { Tracklist } from "./components/Tracklist";
