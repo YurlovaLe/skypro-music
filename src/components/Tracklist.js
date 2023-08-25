@@ -1,5 +1,5 @@
 import { Search } from "./Search";
-import { Filter } from "./Filter";
+import { Filter } from "./Filter/Filter";
 import { Track } from "./Track";
 import { TrackSkeleton } from "./TrackSkeleton";
 import './Tracklist.css'
