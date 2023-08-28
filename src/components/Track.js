@@ -1,7 +1,7 @@
 import './Track.css'
 
-export function Track(props) {
-  const { comment, link, name, singer, album, time } = props.track;
+export function Track({ comment, link, name, singer, album, time }) {
+  
   return (
     <div className="playlist__item">
       <div className="playlist__track track">

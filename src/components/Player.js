@@ -1,6 +1,6 @@
 import './Player.css';
 
-export function Player() {
+export function Player({ isLoading }) {
   return (
     <div className="bar__content">
       <div className="bar__player-progress"></div>
@@ -35,21 +35,25 @@ export function Player() {
           </div>
 
           <div className="player__track-play track-play">
-            <div className="track-play__contain">
-              <div className="track-play__image">
-                <svg className="track-play__svg" alt="music">
-                  <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                </svg>
+            {isLoading 
+              ? <img src="img/player_skeleton.png" />
+              : (
+              <div className="track-play__contain">
+                <div className="track-play__image">
+                  <svg className="track-play__svg" alt="music">
+                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                  </svg>
+                </div>
+                <div className="track-play__author">
+                  <a className="track-play__author-link" href="http://"
+                    >Ты та...</a
+                  >
+                </div>
+                <div className="track-play__album">
+                  <a className="track-play__album-link" href="http://">Баста</a>
+                </div>
               </div>
-              <div className="track-play__author">
-                <a className="track-play__author-link" href="http://"
-                  >Ты та...</a
-                >
-              </div>
-              <div className="track-play__album">
-                <a className="track-play__album-link" href="http://">Баста</a>
-              </div>
-            </div>
+            )}
 
             <div className="track-play__like-dis">
               <div className="track-play__like _btn-icon">

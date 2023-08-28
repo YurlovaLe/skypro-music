@@ -1,7 +1,11 @@
 import './Sidebar.css'
 
-export function Sidebar() {
+export function Sidebar({ isLoading }) {
+
   return (
+    isLoading
+    ? <img src="img/sidebar_skeleton.png" />
+    : (
     <div className="sidebar__list">
       <div className="sidebar__item">
         <a className="sidebar__link" href="#">
@@ -31,5 +35,5 @@ export function Sidebar() {
         </a>
       </div>
     </div>
-  )
+  ))
 }
