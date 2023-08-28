@@ -1,0 +1,36 @@
+import * as S from "./Sidebar.style";
+
+export function Sidebar({ isLoading }) {
+
+  return (
+    isLoading
+    ? <img src="img/sidebar_skeleton.png" alt=""/>
+    : (
+    <S.SidebarList>
+      <S.SidebarItem>
+        <S.SidebarLink href="#">
+          <S.SidebarImg
+            src="img/playlist01.png"
+            alt="day's playlist"
+          />
+        </S.SidebarLink>
+      </S.SidebarItem>
+      <S.SidebarItem>
+        <S.SidebarLink href="#">
+          <S.SidebarImg
+            src="img/playlist02.png"
+            alt="day's playlist"
+          />
+        </S.SidebarLink>
+      </S.SidebarItem>
+      <S.SidebarItem>
+        <S.SidebarLink href="#">
+          <S.SidebarImg
+            src="img/playlist03.png"
+            alt="day's playlist"
+          />
+        </S.SidebarLink>
+      </S.SidebarItem>
+    </S.SidebarList>
+  ))
+}

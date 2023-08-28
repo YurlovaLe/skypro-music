@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { MenuList } from './components/MenuList/MenuList';
-import { Player } from './components/Player';
-import { Sidebar } from "./components/Sidebar";
-import { Tracklist } from "./components/Tracklist";
-import { tracks } from './mocks/tracks';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { MenuList } from "./components/MenuList/MenuList";
+import { Player } from "./components/Player/Player";
+import { Sidebar } from "./components/Sidebar/Sidebar";
+import { Tracklist } from "./components/Tracklist/Tracklist";
+import { tracks } from "./mocks/tracks";
+import * as S from "./App.style";
+import { GlobalStyle } from "./styles";
 
 function App() {
-  
   const [isLoading, setIsLoading] = useState(true);
-  
+
   useEffect(() => {
     const timerId = setTimeout(() => {
       setIsLoading(false);
@@ -21,31 +21,34 @@ function App() {
   }, []);
 
   return (
-    <div className="wrapper">
-      <div className="container">
-        <main className="main">
-          <MenuList />
-          <Tracklist isLoading={isLoading} items={tracks}/>
-          <div className="main__sidebar sidebar">
-            <div className="sidebar__personal">
-              <p className="sidebar__personal-name">Sergey.Ivanov</p>
-              <div className="sidebar__icon">
-                <svg alt="logout">
-                  <use xlinkHref="img/icon/sprite.svg#logout"></use>
-                </svg>
-              </div>
-            </div>
-            <div className="sidebar__block">
-              <Sidebar isLoading={isLoading} />
-            </div>
-          </div>
-        </main>
-        <div className="bar">
-          <Player isLoading={isLoading} />
-        </div>
-        <footer className="footer"></footer>
-      </div>
-    </div>
+    <>
+      <GlobalStyle />
+      <S.Wrapper>
+        <S.Container>
+          <S.Main>
+            <MenuList />
+            <Tracklist isLoading={isLoading} items={tracks} />
+            <S.MainSidebar>
+              <S.SidebarPersonal>
+                <S.SidebarPersonalName>Sergey.Ivanov</S.SidebarPersonalName>
+                <S.SidebarIcon>
+                  <svg alt="logout">
+                    <use xlinkHref="img/icon/sprite.svg#logout"></use>
+                  </svg>
+                </S.SidebarIcon>
+              </S.SidebarPersonal>
+              <S.SidebarBlock>
+                <Sidebar isLoading={isLoading} />
+              </S.SidebarBlock>
+            </S.MainSidebar>
+          </S.Main>
+          <S.Bar>
+            <Player isLoading={isLoading} />
+          </S.Bar>
+          <footer className="footer"></footer>
+        </S.Container>
+      </S.Wrapper>
+    </>
   );
 }
 

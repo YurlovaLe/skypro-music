@@ -1,11 +1,11 @@
-import './Track.css'
+import * as S from "./Track/Track.style";
 
 export function TrackSkeleton() {
   return (
-    <div className="playlist__item">
-      <div className="playlist__track track">
-        <img src="img/track_skeleton.png" />
-      </div>
-    </div>
+    <S.PlaylistItem>
+      <S.PlaylistTrack>
+        <img src="img/track_skeleton.png" alt=""/>
+      </S.PlaylistTrack>
+    </S.PlaylistItem>
   )
 }

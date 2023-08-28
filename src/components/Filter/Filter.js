@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FilterButton } from "../FilterButton";
+import { FilterButton } from "../FilterButton/FilterButton";
 import * as S from "./Filter.style";
 
 //const authors=['Nero', 'Dynoro, Outwork, Mr. Gee', 'Ali Bakgor', 'Стоункат, Psychopath', 'Jaded, Will Clarke, AR/CO<', 'Blue Foundation, Zeds Dead'];

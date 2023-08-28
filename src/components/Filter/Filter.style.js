@@ -1,5 +1,4 @@
 import { styled } from "styled-components";
-
 export const CenterblockFliter = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;
