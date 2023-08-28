@@ -9,9 +9,7 @@ const genres = ["Рок", "Хип-хоп", "Поп-музыка", "Техно", 
 export function Filter({ authors }) {
   const [shownFilter, setShownFilter] = useState("");
   const toggleVisibility = (filterName) => {
-    filterName === shownFilter
-      ? setShownFilter("")
-      : setShownFilter(filterName);
+    setShownFilter(filterName === shownFilter ?  '' : filterName);
   };
 
   return (
