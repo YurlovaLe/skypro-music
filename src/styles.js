@@ -45,6 +45,7 @@ body {
   height: 100%;
   font-family: "StratosSkyeng", sans-serif;
   color: #ffffff;
+  background-color: #383838;
 }
 
 ._btn-text:hover {
