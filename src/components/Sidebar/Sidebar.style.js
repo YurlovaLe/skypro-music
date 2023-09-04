@@ -1,5 +1,6 @@
+import { styled } from "styled-components";
 
-.sidebar__list {
+export const SidebarList = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -10,23 +11,23 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-}
+`
 
-.sidebar__item {
+export const SidebarItem = styled.div`
   width: 250px;
   height: 150px;
-}
-
-.sidebar__item:not(:last-child) {
+  
+  &:not(:last-child) {
   margin-bottom: 30px;
-}
+  }
+`
 
-.sidebar__link {
+export const SidebarLink = styled.a`
   width: 100%;
   height: 100%;
-}
+`
 
-.sidebar__img {
+export const SidebarImg = styled.img`
   width: 100%;
   height: auto;
-}
+`
