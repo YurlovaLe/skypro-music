@@ -1,15 +1,13 @@
 import { Search } from "../Search/Search";
 import { Filter } from "../Filter/Filter";
 import { Track } from "../Track/Track";
-import { TrackSkeleton } from "../TrackSkeleton";
+import { TracksSkeleton } from "../TracksSkeleton";
 import * as S from "./Tracklist.style";
 
-export function Tracklist({ isLoading, items }) {
+export function Tracklist({ isLoading, items, setCurrentTrack }) {
   const authors = items.map(item => item.singer);
-  const listItem = items.map((item, index) =>
-    isLoading 
-    ? <TrackSkeleton key={index} /> 
-    : <Track
+  const listItems = items.map((item) => (
+      <Track
         comment={item.comment}
         link={item.link}
         name={item.name}
@@ -17,8 +15,12 @@ export function Tracklist({ isLoading, items }) {
         album={item.album}
         time={item.time}
         key={item.id}
+        onClick={() => {
+          setCurrentTrack(item.id)
+        }}
       />
-  )
+    )
+  );
 
   return (
     <S.MainCenterblock>
@@ -36,7 +38,9 @@ export function Tracklist({ isLoading, items }) {
           </S.PlaylistTitleSvg>
         </S.Col04>
       </S.ContentTitle>
-      <S.ContentPlaylist>{listItem}</S.ContentPlaylist>
+      <S.ContentPlaylist>
+        {isLoading ? <TracksSkeleton /> : listItems}
+      </S.ContentPlaylist>
     </S.CenterblockContent>
   </S.MainCenterblock>
   )

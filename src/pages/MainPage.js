@@ -4,38 +4,38 @@ import { Player } from "../components/Player/Player";
 import { Sidebar } from "../components/Sidebar/Sidebar";
 import { Tracklist } from "../components/Tracklist/Tracklist";
 import { getAllTracks } from "../api";
-// import { tracks } from "../mocks/tracks";
 import * as S from "../App.style";
 
 function MainPage() {
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const timerId = setTimeout(() => {
-      setIsLoading(false);
-    }, 5000);
+  const [alltracks, setAlltracks] = useState([]);
 
-    return () => {
-      clearTimeout(timerId);
-    };
-  }, []);
+  const [currentTrack, setCurrentTrack] = useState(null);
 
-  const [alltracks, setAlltracks] = useState();
+  const [loadingError, setLoadingError] = useState(null);
 
   useEffect(() => {
-    getAllTracks().then((playlist) => {
-      console.log(playlist)
-      setAlltracks(playlist)
-    });
+    getAllTracks()
+      .then((playlist) => {
+        console.log(playlist);
+         setAlltracks(playlist);
+         setIsLoading(false);
+      })
+      .catch((error) => {
+        setLoadingError(error.message);
+        setIsLoading(false);
+      })
   }, []);
 
   return (
+    loadingError ? loadingError : 
     <>
       <S.Wrapper>
         <S.Container>
           <S.Main>
             <MenuList />
-            <Tracklist isLoading={isLoading} items={alltracks} />
+            <Tracklist isLoading={isLoading} items={alltracks} setCurrentTrack={setCurrentTrack}/>
             <S.MainSidebar>
               <S.SidebarPersonal>
                 <S.SidebarPersonalName>Sergey.Ivanov</S.SidebarPersonalName>
@@ -51,7 +51,7 @@ function MainPage() {
             </S.MainSidebar>
           </S.Main>
           <S.Bar>
-            <Player isLoading={isLoading} />
+            {currentTrack ? <Player isLoading={isLoading} alltracks={alltracks} currentTrack={currentTrack}/> : null}
           </S.Bar>
           <footer className="footer"></footer>
         </S.Container>

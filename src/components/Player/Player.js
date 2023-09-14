@@ -1,6 +1,10 @@
 import * as S from "./Player.style";
 
-export function Player({ isLoading }) {
+export function Player({ isLoading, alltracks, currentTrack }) {
+
+  const trackInfo = alltracks.find((track) => (track.id === currentTrack));
+  console.log(trackInfo);
+
   return (
     <S.BarContent>
       <S.BarPlayerProgress />
@@ -44,10 +48,10 @@ export function Player({ isLoading }) {
                   </S.TrackPlaySvg>
                 </S.TrackPlayImage>
                 <S.TrackPlayAuthor>
-                  <S.TrackPlayAuthorLink href="http://">Ты та...</S.TrackPlayAuthorLink>
+                  <S.TrackPlayAuthorLink href="http://">{trackInfo.name}</S.TrackPlayAuthorLink>
                 </S.TrackPlayAuthor>
                 <S.TrackPlayAlbum>
-                  <S.TrackPlayAlbumLink href="http://">Баста</S.TrackPlayAlbumLink>
+                  <S.TrackPlayAlbumLink href="http://">{trackInfo.author}</S.TrackPlayAlbumLink>
                 </S.TrackPlayAlbum>
               </S.TrackPlayContain>
             )}
