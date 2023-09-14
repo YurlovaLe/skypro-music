@@ -2,15 +2,15 @@
 import React, { useState } from "react";
 import * as S from './MenuList.style'
 const items = [
-  { title: "Главное", id: 1 },
-  { title: "Мой плейлист", id: 2 },
-  { title: "Войти", id: 3 },
+  { title: "Главное", id: 1, link: "/" },
+  { title: "Мой плейлист", id: 2, link: "/favorites" },
+  { title: "Войти", id: 3, link: "/login" },
 ];
 
 export function MenuList() {
   const listItems = items.map((item) => (
     <S.MenuItem key={item.id}>
-      <S.MenuLink href="#">{item.title}</S.MenuLink>
+      <S.MenuLink to={item.link}>{item.title}</S.MenuLink>
     </S.MenuItem>
   ));
 
