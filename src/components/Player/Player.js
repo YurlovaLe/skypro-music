@@ -1,11 +1,41 @@
+import React, { useEffect, useRef, useState } from "react";
 import * as S from "./Player.style";
 
 export function Player({ isLoading, alltracks, currentTrack }) {
 
   const trackInfo = alltracks.find((track) => (track.id === currentTrack));
-  console.log(trackInfo);
+  const audioRef = useRef(null);
+
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    audioRef.current.load();
+    setIsPlaying(true);
+  }, [currentTrack])
+
+  const handleStart = () => {
+    audioRef.current.play();
+    setIsPlaying(true);
+  };
+
+  const handleStop = () => {
+    audioRef.current.pause();
+    setIsPlaying(false);
+  };
+
+  const togglePlay = isPlaying ? handleStop : handleStart;
+  
+  const [isRepeat, setIsRepeat] = useState(false);
+
+  const toggleRepeat = () => {
+    setIsRepeat(!isRepeat);
+  }
 
   return (
+    <>
+    <audio controls loop={isRepeat ? "loop" : " "} autoPlay ref={audioRef}>
+      <source src={trackInfo.track_file} type="audio/mpeg" />
+    </audio>
     <S.BarContent>
       <S.BarPlayerProgress />
       <S.BarPlayerBlock>
@@ -17,8 +47,8 @@ export function Player({ isLoading, alltracks, currentTrack }) {
               </S.PlayerBtnPrevSvg>
             </S.PlayerBtnPrev>
             <S.PlayerBtnPlay className="_btn">
-              <S.PlayerBtnPlaySvg alt="play">
-                <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
+              <S.PlayerBtnPlaySvg alt="play" onClick={togglePlay}>
+                <use xlinkHref={isPlaying ? "img/icon/sprite.svg#icon-stop" : "img/icon/sprite.svg#icon-play"}></use>
               </S.PlayerBtnPlaySvg>
             </S.PlayerBtnPlay>
             <S.PlayerBtnNext>
@@ -27,7 +57,7 @@ export function Player({ isLoading, alltracks, currentTrack }) {
               </S.PlayerBtnNextSvg>
             </S.PlayerBtnNext>
             <S.PlayerBtnRepeat className="_btn-icon">
-              <S.PlayerBtnRepeatSvg alt="repeat">
+              <S.PlayerBtnRepeatSvg alt="repeat" onClick={toggleRepeat}>
                 <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
               </S.PlayerBtnRepeatSvg>
             </S.PlayerBtnRepeat>
@@ -88,5 +118,6 @@ export function Player({ isLoading, alltracks, currentTrack }) {
         </S.BarVolumeBlock>
       </S.BarPlayerBlock>
     </S.BarContent>
+    </>
   )
 }
