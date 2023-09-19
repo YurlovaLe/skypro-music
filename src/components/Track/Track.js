@@ -1,6 +1,6 @@
 import * as S from "./Track.style";
 
-export function Track({ comment, link, name, singer, album, time }) {
+export function Track({ comment, link, name, singer, album, time, onClick }) {
   
   return (
     <S.PlaylistItem>
@@ -12,7 +12,7 @@ export function Track({ comment, link, name, singer, album, time }) {
             </S.TrackTitleSvg>
           </S.TrackTitleImage>
           <div className="track__title-text">
-            <S.TrackTitleLink href="http://">
+            <S.TrackTitleLink onClick={onClick}>
               {name} <S.TrackTitleSpan>{comment}</S.TrackTitleSpan>
             </S.TrackTitleLink>
           </div>
