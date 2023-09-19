@@ -280,6 +280,7 @@ export const BarVolumeSvg = styled.svg`
   width: 13px;
   height: 18px;
   fill: transparent;
+  cursor: pointer;
 `
 
 export const BarVolumeProgress = styled.div`

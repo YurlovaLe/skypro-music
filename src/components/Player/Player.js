@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as S from "./Player.style";
-import ProgressBar from "../ProgressBar/ProgressBar";
-import VolumeProgressLine from "../VolumeProgressLine/VolumeProgressLine";
+import RangeBar from "../RangeBar/RangeBar";
 
 export function Player({ isLoading, alltracks, currentTrack }) {
   const trackInfo = alltracks.find((track) => track.id === currentTrack);
@@ -10,7 +9,7 @@ export function Player({ isLoading, alltracks, currentTrack }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currTime, setCurrTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [currVolume, setCurrVolume] = useState(0);
+  const [currVolume, setCurrVolume] = useState(1);
   const [isRepeat, setIsRepeat] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
 
@@ -29,7 +28,7 @@ export function Player({ isLoading, alltracks, currentTrack }) {
     audioRef.current.addEventListener("change", (event) =>
       setCurrVolume(event.target.volume)
     );
-  });
+  }, []);
 
   const handleStart = () => {
     audioRef.current.play();
@@ -60,6 +59,7 @@ export function Player({ isLoading, alltracks, currentTrack }) {
 
   const manualSetVolume = (value) => {
     audioRef.current.volume = value;
+    setCurrVolume(value);
   };
 
   const notReady = () => {
@@ -77,17 +77,18 @@ export function Player({ isLoading, alltracks, currentTrack }) {
 
   return (
     <>
-      <audio controls loop={isRepeat ? "loop" : " "} muted={isMuted ? "muted" : ""} autoPlay ref={audioRef}>
+      <audio loop={isRepeat ? "loop" : " "} muted={isMuted ? "muted" : ""} autoPlay ref={audioRef}>
         <source src={trackInfo.track_file} type="audio/mpeg" />
       </audio>
       <S.BarContent>
         <S.BarTime>
           {timeInMin(currTime)} / {timeInMin(duration)}
         </S.BarTime>
-        <ProgressBar
-          currTime={currTime}
-          duration={duration}
-          manualSetCurrTime={manualSetCurrTime}
+        <RangeBar
+          currentValue={currTime}
+          maxValue={duration}
+          onRangeChange={manualSetCurrTime}
+          color="#B672FF"
         />
         <S.BarPlayerBlock>
           <S.BarPlayer>
@@ -169,13 +170,15 @@ export function Player({ isLoading, alltracks, currentTrack }) {
             <S.BarVolumeContent>
               <S.BarVolumeImage>
                 <S.BarVolumeSvg alt="volume" onClick={setVolumeMuted}>
-                  <use xlinkHref="img/icon/sprite.svg#icon-volume"></use>
+                  <use xlinkHref={`img/icon/sprite.svg#${isMuted ? 'icon-mute' : 'icon-volume'}`}></use>
                 </S.BarVolumeSvg>
               </S.BarVolumeImage>
               <S.BarVolumeProgress className="_btn">
-                <VolumeProgressLine
-                  currVolume={currVolume}
-                  manualSetVolume={manualSetVolume}
+                <RangeBar
+                  currentValue={currVolume}
+                  maxValue={1}
+                  onRangeChange={manualSetVolume}
+                  color="#D9D9D9"
                 />
               </S.BarVolumeProgress>
             </S.BarVolumeContent>
