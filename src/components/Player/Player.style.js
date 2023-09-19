@@ -1,5 +1,10 @@
 import { styled, css } from "styled-components";
 
+export const BarTime = styled.div`
+display: flex;
+justify-content: flex-end;
+`
+
 export const BarContent = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;
@@ -278,9 +283,5 @@ export const BarVolumeSvg = styled.svg`
 `
 
 export const BarVolumeProgress = styled.div`
-  width: 109px;
-`
-
-export const BarVolumeProgressLine = styled.input`
   width: 109px;
 `
