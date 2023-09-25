@@ -1,5 +1,10 @@
 import { styled, css } from "styled-components";
 
+export const BarTime = styled.div`
+display: flex;
+justify-content: flex-end;
+`
+
 export const BarContent = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;
@@ -8,12 +13,6 @@ export const BarContent = styled.div`
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-`
-
-export const BarPlayerProgress = styled.div`
-  width: 100%;
-  height: 5px;
-  background: #2e2e2e;
 `
 
 export const BarPlayerBlock = styled.div`
@@ -115,8 +114,7 @@ export const PlayerBtnRepeat = styled.div`
 export const PlayerBtnRepeatSvg = styled.svg`
   width: 18px;
   height: 12px;
-  fill: transparent;
-  stroke: #696969;
+  stroke: ${(props) => props.$isRepeat ? "#d9d9d9" : "#696969"};
 `
 
 export const PlayerBtnShuffle = styled.div`
@@ -282,12 +280,9 @@ export const BarVolumeSvg = styled.svg`
   width: 13px;
   height: 18px;
   fill: transparent;
+  cursor: pointer;
 `
 
 export const BarVolumeProgress = styled.div`
-  width: 109px;
-`
-
-export const BarVolumeProgressLine = styled.input`
   width: 109px;
 `
