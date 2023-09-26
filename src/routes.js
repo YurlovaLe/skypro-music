@@ -1,29 +1,31 @@
 import { Routes, Route } from "react-router-dom";
 import MainPage from "./pages/MainPage";
-import { Login } from "./pages/Login";
-import { Register } from "./pages/Register";
+import { UserContext } from "./App";
+import { AuthPage } from "./pages/AuthPage";
 import { Category } from "./pages/Category";
 import { Favorites } from "./pages/Favorites";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { NotFound } from "./pages/NotFound";
+import { useContext } from 'react';
 
-export const AppRoutes = ({ user }) => {
+export const AppRoutes = () => {
+  const { user } = useContext(UserContext);
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<AuthPage />} />
+      <Route path="/register" element={<AuthPage isLoginMode={false} />} />
       <Route
         path="/"
         element={
-          <ProtectedRoute redirectPath="/login" isAllowed={Boolean(user)}>
-            <MainPage />
+          <ProtectedRoute redirectPath="/login" isAllowed={Boolean(user.id)}>
+            <MainPage user={user}/>
           </ProtectedRoute>
         }
       />
       <Route
         path="category/:category"
         element={
-          <ProtectedRoute redirectPath="/login" isAllowed={Boolean(user)}>
+          <ProtectedRoute redirectPath="/login" isAllowed={Boolean(user.id)}>
             <Category />
           </ProtectedRoute>
         }
@@ -31,7 +33,7 @@ export const AppRoutes = ({ user }) => {
       <Route
         path="favorites"
         element={
-          <ProtectedRoute redirectPath="/login" isAllowed={Boolean(user)}>
+          <ProtectedRoute redirectPath="/login" isAllowed={Boolean(user.id)}>
             <Favorites />
           </ProtectedRoute>
         }
@@ -39,7 +41,7 @@ export const AppRoutes = ({ user }) => {
       <Route
         path="*"
         element={
-          <ProtectedRoute redirectPath="/login" isAllowed={Boolean(user)}>
+          <ProtectedRoute redirectPath="/login" isAllowed={Boolean(user.id)}>
             <NotFound />
           </ProtectedRoute>
         }

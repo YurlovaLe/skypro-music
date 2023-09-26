@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { MenuList } from "../components/MenuList/MenuList";
 import { Player } from "../components/Player/Player";
 import { Sidebar } from "../components/Sidebar/Sidebar";
 import { Tracklist } from "../components/Tracklist/Tracklist";
+import { UserContext } from "../App";
 import { getAllTracks } from "../api";
 import * as S from "../App.style";
 
 function MainPage() {
+  const { user, logout } = useContext(UserContext);
+
   const [isLoading, setIsLoading] = useState(true);
 
   const [alltracks, setAlltracks] = useState([]);
@@ -38,8 +41,8 @@ function MainPage() {
             <Tracklist isLoading={isLoading} items={alltracks} setCurrentTrack={setCurrentTrack}/>
             <S.MainSidebar>
               <S.SidebarPersonal>
-                <S.SidebarPersonalName>Sergey.Ivanov</S.SidebarPersonalName>
-                <S.SidebarIcon>
+                <S.SidebarPersonalName>{user.username}</S.SidebarPersonalName>
+                <S.SidebarIcon onClick={logout}>
                   <svg alt="logout">
                     <use xlinkHref="img/icon/sprite.svg#logout"></use>
                   </svg>
