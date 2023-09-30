@@ -2,10 +2,22 @@ import { NEXT_TRACK, PREV_TRACK, SET_CURRENT_TRACK, START_PLAY, STOP_PLAY, TOGGL
 
 const initialState = {
   playing: false,
-  // playlist: [],
+  playlist: [],
   currentTrackId: null,
-  // shuffled: false,
-  // shuffledPlaylist: [],
+  shuffled: false,
+  shuffledPlaylist: [],
+}
+
+const createShuffledPlaylist = (tracklist, currentTrack) => {
+  const playlist = [...tracklist].sort(
+    () => 0.5 - Math.random(),
+  );
+
+  const currentTrackIndex = tracklist.findIndex((track) => {
+    return track.id === currentTrack
+  });
+
+  return playlist.toSpliced(currentTrackIndex, 1);
 }
 
 export function audioplayerReducer (state = initialState, action) {
@@ -16,6 +28,7 @@ export function audioplayerReducer (state = initialState, action) {
         ...state,
         playing: true,
         currentTrackId: action.payload.id,
+        playlist: action.payload.tracklist,
       }
     }
 
@@ -23,10 +36,10 @@ export function audioplayerReducer (state = initialState, action) {
       const playlist = state.shuffled ? state.shuffledPlaylist : state.playlist;
       
       const currentTrackIndex = playlist.findIndex((track) => {
-        return track.id === state.track.id
+        return track.id === state.currentTrackId
       })
 
-      const newTrack = playlist[currentTrackIndex + 1]
+      const newTrack = playlist[currentTrackIndex + 1];
 
       if (!newTrack) {
         return state
@@ -34,7 +47,7 @@ export function audioplayerReducer (state = initialState, action) {
 
       return {
         ...state,
-      currentTrackId: newTrack
+      currentTrackId: newTrack.id,
       }
     }
 
@@ -42,14 +55,14 @@ export function audioplayerReducer (state = initialState, action) {
       const playlist = state.shuffled ? state.shuffledPlaylist : state.playlist;
       
       const currentTrackIndex = playlist.findIndex((track) => {
-        return track.id === state.track.id
+        return track.id === state.currentTrackId
       })
 
       if (currentTrackIndex === 0) {
         return state
       }
 
-      const newTrack = playlist[currentTrackIndex - 1]
+      const newTrack = playlist[currentTrackIndex - 1];
 
       if (!newTrack) {
         return state
@@ -57,7 +70,7 @@ export function audioplayerReducer (state = initialState, action) {
 
       return {
         ...state,
-      currentTrackId: newTrack
+      currentTrackId: newTrack.id
       }
     }
 
@@ -75,7 +88,13 @@ export function audioplayerReducer (state = initialState, action) {
       }
     }
 
-    case TOGGLE_SHUFLED: {}
+    case TOGGLE_SHUFLED: {
+      return {
+        ...state,
+        shuffled: !state.shuffled,
+        shuffledPlaylist: createShuffledPlaylist(state.playlist, state.currentTrackId),
+      }
+    }
 
     default:
       return state;

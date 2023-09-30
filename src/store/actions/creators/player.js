@@ -12,32 +12,32 @@ export const stopPlay = () => ({
   },
 });
 
-export const nextTrack = () => ({
+export const nextTrack = (tracklist) => ({
   type: NEXT_TRACK,
   payload: {
+    tracklist
   },
 });
 
-export const prevTrack = () => ({
+export const prevTrack = (tracklist) => ({
   type: PREV_TRACK,
   payload: {
+    tracklist
   },
 });
 
-export const setCurrentTrack = (id) => ({
+export const setCurrentTrack = (id, tracklist) => ({
   type: SET_CURRENT_TRACK,
   payload: {
-    id
+    tracklist,
+    id,
   },
 });
 
-export const toggleShufled = () => ({
+export const toggleShufled = (id, tracklist) => ({
   type: TOGGLE_SHUFLED,
   payload: {
-    // playing,
-    // playlist,
-    // track,
-    // shuffled,
-    // shuffledPlaylist,
+    payload: {
+    },
   },
 })

@@ -5,3 +5,7 @@ export const currentTrackSelector = (store) => {
 export const isPlayingSelector = (store) => {
   return store.audioplayer.playing;
 }
+
+export const isShuffledSelector = (store) => {
+  return store.audioplayer.shuffled;
+}

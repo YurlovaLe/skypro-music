@@ -19,7 +19,7 @@ export function Tracklist({ isLoading, items }) {
         time={item.time}
         key={item.id}
         onClick={() => {
-          dispatch(setCurrentTrack(item.id))
+          dispatch(setCurrentTrack(item.id, items))
         }}
       />
     )
