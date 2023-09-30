@@ -5,6 +5,8 @@ import { Sidebar } from "../components/Sidebar/Sidebar";
 import { Tracklist } from "../components/Tracklist/Tracklist";
 import { UserContext } from "../App";
 import { getAllTracks } from "../api";
+import { useSelector } from "react-redux";
+import { currentTrackSelector } from "../store/selectors/player";
 import * as S from "../App.style";
 
 function MainPage() {
@@ -14,9 +16,9 @@ function MainPage() {
 
   const [alltracks, setAlltracks] = useState([]);
 
-  const [currentTrack, setCurrentTrack] = useState(null);
-
   const [loadingError, setLoadingError] = useState(null);
+
+  const currentTrack = useSelector(currentTrackSelector);
 
   useEffect(() => {
     getAllTracks()
@@ -38,7 +40,7 @@ function MainPage() {
         <S.Container>
           <S.Main>
             <MenuList />
-            <Tracklist isLoading={isLoading} items={alltracks} setCurrentTrack={setCurrentTrack}/>
+            <Tracklist isLoading={isLoading} items={alltracks} />
             <S.MainSidebar>
               <S.SidebarPersonal>
                 <S.SidebarPersonalName>{user.username}</S.SidebarPersonalName>

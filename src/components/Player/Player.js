@@ -1,12 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import * as S from "./Player.style";
 import RangeBar from "../RangeBar/RangeBar";
+import { startPlay, stopPlay } from "../../store/actions/creators/player";
+import { isPlayingSelector } from "../../store/selectors/player";
 
 export function Player({ isLoading, alltracks, currentTrack }) {
-  const trackInfo = alltracks.find((track) => track.id === currentTrack);
+  const dispatch = useDispatch();
+  const isPlaying = useSelector(isPlayingSelector);
+  const trackInfo = alltracks.find((track) => track.id === currentTrack) || {};
   const audioRef = useRef(null);
 
-  const [isPlaying, setIsPlaying] = useState(false);
   const [currTime, setCurrTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [currVolume, setCurrVolume] = useState(1);
@@ -15,7 +19,8 @@ export function Player({ isLoading, alltracks, currentTrack }) {
 
   useEffect(() => {
     audioRef.current.load();
-    setIsPlaying(true);
+    //setIsPlaying(true);
+    dispatch(startPlay());
   }, [currentTrack]);
 
   useEffect(() => {
@@ -32,12 +37,14 @@ export function Player({ isLoading, alltracks, currentTrack }) {
 
   const handleStart = () => {
     audioRef.current.play();
-    setIsPlaying(true);
+    // setIsPlaying(true);
+    dispatch(startPlay());
   };
 
   const handleStop = () => {
     audioRef.current.pause();
-    setIsPlaying(false);
+    //setIsPlaying(false);
+    dispatch(stopPlay())
   };
 
   const timeInMin = (seconds) => {

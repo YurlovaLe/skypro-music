@@ -1,10 +1,13 @@
 import { Search } from "../Search/Search";
 import { Filter } from "../Filter/Filter";
 import { Track } from "../Track/Track";
+import { setCurrentTrack } from "../../store/actions/creators/player";
 import { TracksSkeleton } from "../TracksSkeleton";
 import * as S from "./Tracklist.style";
+import { useDispatch } from "react-redux";
 
-export function Tracklist({ isLoading, items, setCurrentTrack }) {
+export function Tracklist({ isLoading, items }) {
+  const dispatch = useDispatch();
   const authors = items.map(item => item.singer);
   const listItems = items.map((item) => (
       <Track
@@ -16,7 +19,7 @@ export function Tracklist({ isLoading, items, setCurrentTrack }) {
         time={item.time}
         key={item.id}
         onClick={() => {
-          setCurrentTrack(item.id)
+          dispatch(setCurrentTrack(item.id))
         }}
       />
     )
