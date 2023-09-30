@@ -12,11 +12,11 @@ export function Tracklist({ isLoading, items }) {
   const listItems = items.map((item) => (
       <Track
         comment={item.comment}
-        link={item.link}
         name={item.name}
         singer={item.singer}
         album={item.album}
         time={item.time}
+        trackId={item.id}
         key={item.id}
         onClick={() => {
           dispatch(setCurrentTrack(item.id, items))
