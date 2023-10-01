@@ -2,28 +2,22 @@ import { NEXT_TRACK, PREV_TRACK, SET_CURRENT_TRACK, START_PLAY, STOP_PLAY, TOGGL
 
 export const startPlay = () => ({
   type: START_PLAY,
-  payload: {
-  },
+  payload: {},
 });
 
 export const stopPlay = () => ({
   type: STOP_PLAY,
-  payload: {
-  },
+  payload: {},
 });
 
-export const nextTrack = (tracklist) => ({
+export const nextTrack = () => ({
   type: NEXT_TRACK,
-  payload: {
-    tracklist
-  },
+  payload: {},
 });
 
-export const prevTrack = (tracklist) => ({
+export const prevTrack = () => ({
   type: PREV_TRACK,
-  payload: {
-    tracklist
-  },
+  payload: {},
 });
 
 export const setCurrentTrack = (id, tracklist) => ({
@@ -34,10 +28,7 @@ export const setCurrentTrack = (id, tracklist) => ({
   },
 });
 
-export const toggleShufled = (id, tracklist) => ({
+export const toggleShufled = () => ({
   type: TOGGLE_SHUFLED,
-  payload: {
-    payload: {
-    },
-  },
+  payload: {},
 })

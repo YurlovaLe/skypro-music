@@ -20,7 +20,7 @@ export function Player({ isLoading, alltracks, currentTrack }) {
   useEffect(() => {
     audioRef.current.load();
     dispatch(startPlay());
-  }, [currentTrack]);
+  }, [currentTrack, dispatch]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -71,13 +71,11 @@ export function Player({ isLoading, alltracks, currentTrack }) {
   };
 
   const handleNext = () => {
-    dispatch(nextTrack(alltracks));
-    audioRef.current.play();
+    dispatch(nextTrack());
   };
 
   const handlePrev = () => {
-    dispatch(prevTrack(alltracks));
-    audioRef.current.play();
+    dispatch(prevTrack());
   };
 
   const setTrackTimes = (event) => {
@@ -91,7 +89,7 @@ export function Player({ isLoading, alltracks, currentTrack }) {
 
   return (
     <>
-      <audio loop={isRepeat ? "loop" : " "} muted={isMuted ? "muted" : ""} autoPlay ref={audioRef}>
+      <audio loop={isRepeat} muted={isMuted} autoPlay ref={audioRef} onEnded={handleNext}>
         <source src={trackInfo.track_file} type="audio/mpeg" />
       </audio>
       <S.BarContent>
