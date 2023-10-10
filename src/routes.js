@@ -1,12 +1,15 @@
+import { useContext } from 'react';
 import { Routes, Route } from "react-router-dom";
-import MainPage from "./pages/MainPage";
+
 import { UserContext } from "./App";
+import { ProtectedRoute } from "./components/ProtectedRoute";
+
+import MainPage from "./pages/MainPage";
 import { AuthPage } from "./pages/AuthPage";
 import { Category } from "./pages/Category";
 import { Favorites } from "./pages/Favorites";
-import { ProtectedRoute } from "./components/ProtectedRoute";
+import { Tracks } from "./pages/Tracks";
 import { NotFound } from "./pages/NotFound";
-import { useContext } from 'react';
 
 export const AppRoutes = () => {
   const { user } = useContext(UserContext);
@@ -21,31 +24,24 @@ export const AppRoutes = () => {
             <MainPage user={user}/>
           </ProtectedRoute>
         }
-      />
-      <Route
-        path="category/:category"
-        element={
-          <ProtectedRoute redirectPath="/login" isAllowed={Boolean(user.id)}>
-            <Category />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="favorites"
-        element={
-          <ProtectedRoute redirectPath="/login" isAllowed={Boolean(user.id)}>
-            <Favorites />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="*"
-        element={
-          <ProtectedRoute redirectPath="/login" isAllowed={Boolean(user.id)}>
-            <NotFound />
-          </ProtectedRoute>
-        }
-      />
+      >
+        <Route
+          path="/"
+          element={ <Tracks /> }
+        />
+        <Route
+          path="category/:category"
+          element={ <Category /> }
+        />
+        <Route
+          path="favorites"
+          element={ <Favorites /> }
+        />
+        <Route
+          path="*"
+          element={ <NotFound /> }
+        />
+      </Route>
     </Routes>
   );
 };

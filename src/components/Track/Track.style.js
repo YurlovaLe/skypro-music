@@ -132,7 +132,7 @@ export const TrackTimeSvg = styled.svg`
   width: 14px;
   height: 12px;
   margin-right: 17px;
-  fill: transparent;
+  fill: ${({$isFavorite}) => $isFavorite ? '#B672FF' : 'transparent'};
   stroke: #696969;
 `
 

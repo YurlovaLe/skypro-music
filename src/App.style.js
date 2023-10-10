@@ -33,6 +33,14 @@ export const MainSidebar = styled.div`
   padding: 20px 90px 20px 78px;
 `
 
+export const MainCenterblock = styled.div`
+  width: auto;
+  -webkit-box-flex: 3;
+  -ms-flex-positive: 3;
+  flex-grow: 3;
+  padding: 20px 40px 20px 111px;
+`
+
 export const SidebarPersonal = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;

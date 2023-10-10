@@ -2,9 +2,20 @@ import { currentTrackSelector, isPlayingSelector } from "../../store/selectors/p
 import { useSelector } from "react-redux";
 import * as S from "./Track.style";
 
-export function Track({ comment, link, name, singer, album, time, onClick, trackId }) {
+export function Track({
+  comment,
+  name,
+  singer,
+  album,
+  time,
+  onClick,
+  onLikeClick,
+  trackId,
+  isFavorite,
+}) {
   const currentTrackId = useSelector(currentTrackSelector);
   const isPlaying = useSelector(isPlayingSelector);
+
   return (
     <S.PlaylistItem>
       <S.PlaylistTrack>
@@ -30,7 +41,7 @@ export function Track({ comment, link, name, singer, album, time, onClick, track
           </S.TrackAlbumLink>
         </S.TrackAlbum>
         <div className="track__time">
-          <S.TrackTimeSvg alt="time">
+          <S.TrackTimeSvg $isFavorite={isFavorite} onClick={onLikeClick} alt="time">
             <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
           </S.TrackTimeSvg>
           <S.TrackTimeText>{time}</S.TrackTimeText>
