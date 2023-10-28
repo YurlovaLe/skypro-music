@@ -25,6 +25,7 @@ export const Main = styled.main`
   -ms-flex-pack: justify;
   justify-content: space-between;
   align-items: flex-start;
+  min-height: 100vh;
 `
 
 export const MainSidebar = styled.div`
