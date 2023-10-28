@@ -1,5 +1,7 @@
 import { currentTrackSelector, isPlayingSelector } from "../../store/selectors/player";
 import { useSelector } from "react-redux";
+import { timeInMin } from "../../App.helpers";
+
 import * as S from "./Track.style";
 
 export function Track({
@@ -7,7 +9,7 @@ export function Track({
   name,
   singer,
   album,
-  time,
+  duration,
   onClick,
   onLikeClick,
   trackId,
@@ -15,7 +17,7 @@ export function Track({
 }) {
   const currentTrackId = useSelector(currentTrackSelector);
   const isPlaying = useSelector(isPlayingSelector);
-
+  
   return (
     <S.PlaylistItem>
       <S.PlaylistTrack>
@@ -23,7 +25,7 @@ export function Track({
           <S.TrackTitleImage>
             {(currentTrackId === trackId) ? (<S.TrackTitleCircle $isPlaying={isPlaying}></S.TrackTitleCircle>) 
             : (<S.TrackTitleSvg alt="music" >
-                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                <use xlinkHref="/img/icon/sprite.svg#icon-note"></use>
               </S.TrackTitleSvg>)}
           </S.TrackTitleImage>
           <div className="track__title-text">
@@ -42,9 +44,9 @@ export function Track({
         </S.TrackAlbum>
         <div className="track__time">
           <S.TrackTimeSvg $isFavorite={isFavorite} onClick={onLikeClick} alt="time">
-            <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+            <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
           </S.TrackTimeSvg>
-          <S.TrackTimeText>{time}</S.TrackTimeText>
+          <S.TrackTimeText>{timeInMin(duration)}</S.TrackTimeText>
         </div>
       </S.PlaylistTrack>
     </S.PlaylistItem>

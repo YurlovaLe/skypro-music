@@ -17,14 +17,21 @@ export const MenuOptions = styled.li`
 
   &:hover {
     text-decoration: underline;
-    color: #ad61ff;
+    color: #d9b6ff;
     cursor: pointer;
   }
 
   &:not(:last-child) {
     margin-bottom: 24px;
   }
+
+  color: ${(props) => props.$isActive ? '#ad61ff' : ""}
 `
+
+export const FilterContainer = styled.div`
+  position: relative;
+`
+
 export const FilterBtn = styled.div`
   font-style: normal;
   font-weight: 400;
@@ -38,4 +45,28 @@ export const FilterBtn = styled.div`
   &:not(:last-child) {
     margin-right: 10px;
   }
+
+  color: ${(props) => props.$isShown ? '#ad61ff' : ""};
+  border-color: ${(props) => props.$isShown ? '#ad61ff' : ""};
+`
+export const MenuCount = styled.div`
+  color: white;
+  background-color: rgb(173, 97, 255);
+  width: 26px;
+  height: 26px;
+  border-top-left-radius: 13px;
+  border-top-right-radius: 13px;
+  border-bottom-right-radius: 13px;
+  border-bottom-left-radius: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: -8px;
+  top: -8px;
+  font-family: StratosSkyeng;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 13px;
 `

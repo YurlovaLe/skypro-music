@@ -3,12 +3,10 @@ import { styled } from "styled-components";
 export const Wrapper = styled.div`
   width: 100%;
   min-height: 100%;
-  overflow: hidden;
 `
 
 export const Container = styled.div`
   max-width: 1920px;
-  height: 100vh;
   margin: 0 auto;
   position: relative;
   background-color: #181818;
@@ -26,6 +24,7 @@ export const Main = styled.main`
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  align-items: flex-start;
 `
 
 export const MainSidebar = styled.div`
@@ -34,6 +33,9 @@ export const MainSidebar = styled.div`
 `
 
 export const MainCenterblock = styled.div`
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
   width: auto;
   -webkit-box-flex: 3;
   -ms-flex-positive: 3;
@@ -95,5 +97,4 @@ export const Bar = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
-  background: rgba(28, 28, 28, 0.5);
 `
