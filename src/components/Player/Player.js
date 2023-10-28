@@ -1,12 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import * as S from "./Player.style";
 import RangeBar from "../RangeBar/RangeBar";
+import { startPlay, stopPlay, nextTrack, prevTrack, toggleShufled } from "../../store/actions/creators/player";
+import { isPlayingSelector, isShuffledSelector } from "../../store/selectors/player";
 
 export function Player({ isLoading, alltracks, currentTrack }) {
-  const trackInfo = alltracks.find((track) => track.id === currentTrack);
+  const dispatch = useDispatch();
+  const isPlaying = useSelector(isPlayingSelector);
+  const trackInfo = alltracks.find((track) => track.id === currentTrack) || {};
   const audioRef = useRef(null);
 
-  const [isPlaying, setIsPlaying] = useState(false);
   const [currTime, setCurrTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [currVolume, setCurrVolume] = useState(1);
@@ -15,8 +19,8 @@ export function Player({ isLoading, alltracks, currentTrack }) {
 
   useEffect(() => {
     audioRef.current.load();
-    setIsPlaying(true);
-  }, [currentTrack]);
+    dispatch(startPlay());
+  }, [currentTrack, dispatch]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -32,12 +36,12 @@ export function Player({ isLoading, alltracks, currentTrack }) {
 
   const handleStart = () => {
     audioRef.current.play();
-    setIsPlaying(true);
+    dispatch(startPlay());
   };
 
   const handleStop = () => {
     audioRef.current.pause();
-    setIsPlaying(false);
+    dispatch(stopPlay())
   };
 
   const timeInMin = (seconds) => {
@@ -62,8 +66,16 @@ export function Player({ isLoading, alltracks, currentTrack }) {
     setCurrVolume(value);
   };
 
-  const notReady = () => {
-    alert("Еще не реализовано");
+  const toggleShufledPlaylist = () => {
+    dispatch(toggleShufled());
+  };
+
+  const handleNext = () => {
+    dispatch(nextTrack());
+  };
+
+  const handlePrev = () => {
+    dispatch(prevTrack());
   };
 
   const setTrackTimes = (event) => {
@@ -77,7 +89,7 @@ export function Player({ isLoading, alltracks, currentTrack }) {
 
   return (
     <>
-      <audio loop={isRepeat ? "loop" : " "} muted={isMuted ? "muted" : ""} autoPlay ref={audioRef}>
+      <audio loop={isRepeat} muted={isMuted} autoPlay ref={audioRef} onEnded={handleNext}>
         <source src={trackInfo.track_file} type="audio/mpeg" />
       </audio>
       <S.BarContent>
@@ -94,7 +106,7 @@ export function Player({ isLoading, alltracks, currentTrack }) {
           <S.BarPlayer>
             <S.PlayerControls>
               <S.PlayerBtnPrev>
-                <S.PlayerBtnPrevSvg alt="prev" onClick={notReady}>
+                <S.PlayerBtnPrevSvg alt="prev" onClick={handlePrev}>
                   <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                 </S.PlayerBtnPrevSvg>
               </S.PlayerBtnPrev>
@@ -113,7 +125,7 @@ export function Player({ isLoading, alltracks, currentTrack }) {
                 </S.PlayerBtnPlaySvg>
               </S.PlayerBtnPlay>
               <S.PlayerBtnNext>
-                <S.PlayerBtnNextSvg alt="next" onClick={notReady}>
+                <S.PlayerBtnNextSvg alt="next" onClick={handleNext}>
                   <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                 </S.PlayerBtnNextSvg>
               </S.PlayerBtnNext>
@@ -123,7 +135,7 @@ export function Player({ isLoading, alltracks, currentTrack }) {
                 </S.PlayerBtnRepeatSvg>
               </S.PlayerBtnRepeat>
               <S.PlayerBtnShuffle className="_btn-icon">
-                <S.PlayerBtnShuffleSvg alt="shuffle" onClick={notReady}>
+                <S.PlayerBtnShuffleSvg $isShuffled={useSelector(isShuffledSelector)} alt="shuffle" onClick={toggleShufledPlaylist}>
                   <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
                 </S.PlayerBtnShuffleSvg>
               </S.PlayerBtnShuffle>

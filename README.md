@@ -72,3 +72,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 Оценка HW8 - 5 часов
 факт - 4 часа
+
+Оценка HW9(redux) - 4 часов
+факт - 5 часов

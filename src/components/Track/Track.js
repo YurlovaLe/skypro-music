@@ -1,15 +1,19 @@
+import { currentTrackSelector, isPlayingSelector } from "../../store/selectors/player";
+import { useSelector } from "react-redux";
 import * as S from "./Track.style";
 
-export function Track({ comment, link, name, singer, album, time, onClick }) {
-  
+export function Track({ comment, link, name, singer, album, time, onClick, trackId }) {
+  const currentTrackId = useSelector(currentTrackSelector);
+  const isPlaying = useSelector(isPlayingSelector);
   return (
     <S.PlaylistItem>
       <S.PlaylistTrack>
         <S.TrackTitle>
           <S.TrackTitleImage>
-            <S.TrackTitleSvg alt="music">
-              <use xlinkHref={link}></use>
-            </S.TrackTitleSvg>
+            {(currentTrackId === trackId) ? (<S.TrackTitleCircle $isPlaying={isPlaying}></S.TrackTitleCircle>) 
+            : (<S.TrackTitleSvg alt="music" >
+                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+              </S.TrackTitleSvg>)}
           </S.TrackTitleImage>
           <div className="track__title-text">
             <S.TrackTitleLink onClick={onClick}>
