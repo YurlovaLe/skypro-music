@@ -7,7 +7,8 @@ export const MainNav = styled.nav`
   padding: 20px 0 20px 36px;
 `;
 
-export const NavLogo = styled.div`
+export const NavLogo = styled(Link)`
+  display: block;
   width: 113.33px;
   height: 43px;
   padding: 13px 0 13px 0;
@@ -64,3 +65,4 @@ export const MenuLink = styled(Link)`
   font-size: 16px;
   line-height: 24px;
 `;
+
