@@ -1,12 +1,12 @@
 import { useOutletContext } from "react-router-dom";
 import { Tracklist } from "../components/Tracklist/Tracklist";
 
-export const Favorites = () => {
-  const { favoriteTracks, isLoading, tokens } = useOutletContext();
+export const Tracks = () => {
+  const { isLoading, alltracks, tokens, favoriteTracks } = useOutletContext();
   return (
     <Tracklist
-      heading="Мои треки"
-      items={favoriteTracks}
+      heading="Треки"
+      items={alltracks}
       favoriteItems={favoriteTracks}
       isLoading={isLoading}
       tokens={tokens}

@@ -1,37 +1,41 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useSelector } from "react-redux";
+import { Outlet } from "react-router-dom";
+
+import { useGetAllTracksQuery, useGetFavoriteTracksQuery } from "../services/catalog";
+import { currentTrackSelector } from "../store/selectors/player";
+import { UserContext } from "../App";
+import { handleRefreshApi } from "../api";
+
 import { MenuList } from "../components/MenuList/MenuList";
 import { Player } from "../components/Player/Player";
 import { Sidebar } from "../components/Sidebar/Sidebar";
-import { Tracklist } from "../components/Tracklist/Tracklist";
-import { UserContext } from "../App";
-import { getAllTracks } from "../api";
-import { useSelector } from "react-redux";
-import { currentTrackSelector } from "../store/selectors/player";
+import { Search } from "../components/Search/Search";
 import * as S from "../App.style";
 
 function MainPage() {
-  const { user, logout } = useContext(UserContext);
-
+  const { user, logout, updateUser } = useContext(UserContext);
+  const currentTrack = useSelector(currentTrackSelector);
   const [isLoading, setIsLoading] = useState(true);
 
-  const [alltracks, setAlltracks] = useState([]);
-
-  const [loadingError, setLoadingError] = useState(null);
-
-  const currentTrack = useSelector(currentTrackSelector);
+  const { data: alltracks = [], error: loadingError, isLoading: isAllLoading} = useGetAllTracksQuery();
+  const { data: favoriteTracks, error, isLoading: isFavoriteLoading } = useGetFavoriteTracksQuery(user.access);
+  
+  useEffect(() => {
+    if (error && error.status === 401) {
+      handleRefreshApi(user.refresh)
+        .then((response) => {
+          updateUser(response);
+        })
+        .catch(() => {
+          logout();
+        })
+    }
+  }, [error, updateUser, user, logout]);
 
   useEffect(() => {
-    getAllTracks()
-      .then((playlist) => {
-        console.log(playlist);
-         setAlltracks(playlist);
-         setIsLoading(false);
-      })
-      .catch((error) => {
-        setLoadingError(error.message);
-        setIsLoading(false);
-      })
-  }, []);
+    setIsLoading(isAllLoading && isFavoriteLoading);
+  }, [isAllLoading, isFavoriteLoading]);
 
   return (
     loadingError ? loadingError : 
@@ -40,7 +44,10 @@ function MainPage() {
         <S.Container>
           <S.Main>
             <MenuList />
-            <Tracklist isLoading={isLoading} items={alltracks} />
+            <S.MainCenterblock>
+              <Search />
+              <Outlet context={{isLoading, alltracks, tokens: {access: user.access, refresh: user.refetch}, favoriteTracks}} />
+            </S.MainCenterblock>
             <S.MainSidebar>
               <S.SidebarPersonal>
                 <S.SidebarPersonalName>{user.username}</S.SidebarPersonalName>
