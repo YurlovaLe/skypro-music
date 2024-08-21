@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useSelector } from "react-redux";
-import { Outlet } from "react-router-dom";
+import { Outlet, Route, Routes } from "react-router-dom";
 
 import { useGetAllTracksQuery, useGetFavoriteTracksQuery } from "../services/catalog";
 import { currentTrackSelector } from "../store/selectors/player";
@@ -10,8 +10,7 @@ import { handleRefreshApi } from "../api";
 import { MenuList } from "../components/MenuList/MenuList";
 import { Player } from "../components/Player/Player";
 import { Sidebar } from "../components/Sidebar/Sidebar";
-import { Search } from "../components/Search/Search";
-import * as S from "../App.style";
+import * as S from "../App.styles";
 
 function MainPage() {
   const { user, logout, updateUser } = useContext(UserContext);
@@ -45,7 +44,6 @@ function MainPage() {
           <S.Main>
             <MenuList />
             <S.MainCenterblock>
-              <Search />
               <Outlet context={{isLoading, alltracks, tokens: {access: user.access, refresh: user.refetch}, favoriteTracks}} />
             </S.MainCenterblock>
             <S.MainSidebar>
@@ -53,17 +51,26 @@ function MainPage() {
                 <S.SidebarPersonalName>{user.username}</S.SidebarPersonalName>
                 <S.SidebarIcon onClick={logout}>
                   <svg alt="logout">
-                    <use xlinkHref="img/icon/sprite.svg#logout"></use>
+                    <use xlinkHref="/img/icon/sprite.svg#logout"></use>
                   </svg>
                 </S.SidebarIcon>
               </S.SidebarPersonal>
               <S.SidebarBlock>
-                <Sidebar isLoading={isLoading} />
+                <Routes>
+                  <Route
+                    path="/"
+                    element={<Sidebar isLoading={isLoading} />}
+                  />
+                </Routes>
               </S.SidebarBlock>
             </S.MainSidebar>
           </S.Main>
           <S.Bar>
-            {currentTrack ? <Player isLoading={isLoading} alltracks={alltracks} currentTrack={currentTrack}/> : null}
+            {
+              currentTrack
+              ? <Player isLoading={isLoading} alltracks={alltracks} currentTrack={currentTrack} favoriteTracks={favoriteTracks} />
+              : null
+            }
           </S.Bar>
           <footer className="footer"></footer>
         </S.Container>

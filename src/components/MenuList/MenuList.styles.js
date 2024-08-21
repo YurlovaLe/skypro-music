@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 
 export const MainNav = styled.nav`
-  width: 244px;
+  width: 250px;
   background-color: #181818;
-  padding: 20px 0 20px 36px;
 `;
 
-export const NavLogo = styled.div`
+export const NavLogo = styled(Link)`
+  display: block;
   width: 113.33px;
   height: 43px;
   padding: 13px 0 13px 0;
@@ -64,3 +64,4 @@ export const MenuLink = styled(Link)`
   font-size: 16px;
   line-height: 24px;
 `;
+

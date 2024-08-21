@@ -17,6 +17,7 @@ export const CenterblockContent = styled.div`
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
+  overflow: hidden;
 `
 
 export const ContentTitle = styled.div`
@@ -44,7 +45,7 @@ export const ContentPlaylist = styled.div`
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  overflow-y: auto;
+  overflow: scroll;
 `
 
 const PlaylistTitleMixin = css`

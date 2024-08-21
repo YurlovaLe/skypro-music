@@ -20,3 +20,8 @@ export const FilterTitle = styled.div`
   line-height: 24px;
   margin-right: 15px;
 `
+
+export const BlockFilter = styled.div`
+  display: flex;
+  justify-content: space-between;
+  `

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "../../App";
-import * as S from "./MenuList.style";
+import * as S from "./MenuList.styles";
 
 export function MenuList() {
   const { logout } = useContext(UserContext);
@@ -22,8 +22,8 @@ export function MenuList() {
 
   return (
     <S.MainNav>
-      <S.NavLogo>
-        <S.LogoImage src="img/logo.png" alt="logo" />
+      <S.NavLogo to={"/"}>
+        <S.LogoImage src="/img/logo.png" alt="logo" />
       </S.NavLogo>
       <S.NavBurger onClick={toggleVisibility}>
         <S.BurgerLine></S.BurgerLine>
@@ -33,7 +33,7 @@ export function MenuList() {
 
       {visible && (
         <S.NavMenu>
-          <S.MenuList>{listItems}</S.MenuList>
+          <S.MenuList onClick={toggleVisibility}>{listItems}</S.MenuList>
         </S.NavMenu>
       )}
     </S.MainNav>

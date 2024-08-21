@@ -1,4 +1,4 @@
-import * as S from "./RangeBar.style";
+import * as S from "./RangeBar.styles";
 
 export default function RangeBar({ currentValue, maxValue, onRangeChange, color }) {
 

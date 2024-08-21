@@ -1,44 +1,72 @@
 import { useState } from "react";
 import { FilterButton } from "../FilterButton/FilterButton";
-import * as S from "./Filter.style";
+import * as S from "./Filter.styles";
 
-//const authors=['Nero', 'Dynoro, Outwork, Mr. Gee', 'Ali Bakgor', 'Стоункат, Psychopath', 'Jaded, Will Clarke, AR/CO<', 'Blue Foundation, Zeds Dead'];
-const years = [2000, 2021, 1998];
-const genres = ["Рок", "Хип-хоп", "Поп-музыка", "Техно", "Инди"];
+const sortOptions = ['По умолчанию', 'Сначала старые', 'Сначала новые'];
 
-export function Filter({ authors }) {
+export function Filter({
+  authors,
+  genres,
+  sortType,
+  setSortType,
+  authorsFilter,
+  setAuthorsFilter,
+  genresFilter,
+  setGenresFilter
+}) {
   const [shownFilter, setShownFilter] = useState("");
   const toggleVisibility = (filterName) => {
     setShownFilter(filterName === shownFilter ?  '' : filterName);
   };
+  const changeFilter = (option, filter) => {
+    const index = filter.indexOf(option);
+
+    let changedFilter = [...filter];
+    index === -1 ? changedFilter.push(option) : changedFilter.splice(index, 1);
+
+    return changedFilter;
+  }
 
   return (
+    <S.BlockFilter>
     <S.CenterblockFliter>
       <S.FilterTitle>Искать по:</S.FilterTitle>
       <FilterButton
         text="исполнителю"
+        activeOptions={authorsFilter}
         options={authors}
         buttonClass="button-author"
         isShown={shownFilter === "author"}
         buttonName="author"
+        isShowCounter={true}
         toggleVisibility={toggleVisibility}
-      />
-      <FilterButton
-        text="году выпуска"
-        options={years}
-        buttonClass="button-year"
-        isShown={shownFilter === "year"}
-        buttonName="year"
-        toggleVisibility={toggleVisibility}
+        onOptionClick={(option) => setAuthorsFilter(changeFilter(option, authorsFilter))}
       />
       <FilterButton
         text="жанру"
+        activeOptions={genresFilter}
         options={genres}
         buttonClass="button-genre"
         isShown={shownFilter === "genre"}
         buttonName="genre"
+        isShowCounter={true}
         toggleVisibility={toggleVisibility}
+        onOptionClick={(option) => setGenresFilter(changeFilter(option, genresFilter))}
       />
     </S.CenterblockFliter>
+    <S.CenterblockFliter>
+      <S.FilterTitle>Сортировка:</S.FilterTitle>
+      <FilterButton
+        text={sortType}
+        activeOptions={[sortType]}
+        options={sortOptions}
+        buttonClass="button-sort"
+        isShown={shownFilter === "sort"}
+        buttonName="sort"
+        toggleVisibility={toggleVisibility}
+        onOptionClick={(option) => setSortType(option)}
+      />
+    </S.CenterblockFliter>
+    </S.BlockFilter>
   );
 }

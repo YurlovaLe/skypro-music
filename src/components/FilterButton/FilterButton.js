@@ -1,4 +1,4 @@
-import * as S from "./FilterButton.style";
+import * as S from "./FilterButton.styles";
 
 export function FilterButton({
   text,
@@ -7,14 +7,18 @@ export function FilterButton({
   toggleVisibility,
   buttonName,
   options,
+  activeOptions,
+  onOptionClick,
+  isShowCounter,
 }) {
   const handleClick = () => toggleVisibility(buttonName);
 
   return (
-    <div>
+    <S.FilterContainer>
       <S.FilterBtn
         className={`_btn-text ${buttonClass}`}
         onClick={handleClick}
+        $isShown={isShown}
       >
         {text}
       </S.FilterBtn>
@@ -25,8 +29,9 @@ export function FilterButton({
             <S.MenuOptions
               key={index}
               onClick={() => {
-                console.log(options[index]);
+                onOptionClick(option);
               }}
+              $isActive={activeOptions.includes(option)}
             >
               {" "}
               {option}
@@ -34,6 +39,13 @@ export function FilterButton({
           ))}
         </S.Menu>
       )}
-    </div>
+      {
+        (activeOptions.length && isShowCounter)
+        ? <S.MenuCount>
+            {activeOptions.length}
+          </S.MenuCount>
+        : null
+      }
+    </S.FilterContainer>
   );
 }

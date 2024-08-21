@@ -27,6 +27,7 @@ export const BarPlayerBlock = styled.div`
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  background-color: rgb(28, 28, 28);
 `
 
 export const BarPlayer = styled.div`
@@ -227,31 +228,13 @@ export const TrackPlayLikeDis = styled.div`
   margin-left: 26%;
 `
 
-const TrackPlayMixin = css`
-  padding: 5px;
-`
-
-export const TrackPlayDislike = styled.div`
-  ${TrackPlayMixin}
-  margin-left: 28.5px;
-`
-
-export const TrackPlayLike = styled.div`
-  ${TrackPlayMixin}
-`
-
-export const TrackPlayLikeSvg = styled.svg`
+export const TrackLikeSvg = styled.svg`
   width: 14px;
   height: 12px;
-  fill: transparent;
+  margin-right: 17px;
+  fill: ${({$isFavorite}) => $isFavorite ? '#B672FF' : 'transparent'};
   stroke: #696969;
-}`
-
-export const TrackPlayDislikeSvg = styled.svg`
-  width: 14.34px;
-  height: 13px;
-  fill: transparent;
-  stroke: #696969;
+  cursor: pointer;
 `
 
 export const BarVolumeContent = styled.div`
