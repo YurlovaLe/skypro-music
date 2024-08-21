@@ -1,4 +1,4 @@
-import * as S from "./Search.style";
+import * as S from "./Search.styles";
 
 export function Search({ setNameSearch, nameSearch }) {
   return (

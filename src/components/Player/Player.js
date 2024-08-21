@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import * as S from "./Player.style";
+import * as S from "./Player.styles";
 import { timeInMin } from '../../App.helpers';
 import { useLikeClick } from "../../hooks/useLikeClick";
 import RangeBar from "../RangeBar/RangeBar";

@@ -10,6 +10,7 @@ export const Container = styled.div`
   margin: 0 auto;
   position: relative;
   background-color: #181818;
+  padding: 36px 72px
 `
 
 export const Main = styled.main`
@@ -29,19 +30,13 @@ export const Main = styled.main`
 `
 
 export const MainSidebar = styled.div`
-  max-width: 418px;
-  padding: 20px 90px 20px 78px;
+  max-width: 250px;
 `
 
 export const MainCenterblock = styled.div`
   max-height: 100vh;
   display: flex;
   flex-direction: column;
-  width: auto;
-  -webkit-box-flex: 3;
-  -ms-flex-positive: 3;
-  flex-grow: 3;
-  padding: 20px 40px 20px 111px;
 `
 
 export const SidebarPersonal = styled.div`
@@ -58,7 +53,6 @@ export const SidebarPersonal = styled.div`
   -webkit-box-pack: end;
   -ms-flex-pack: end;
   justify-content: flex-end;
-  padding: 12px 0 15px 0;
 `
 
 export const SidebarPersonalName = styled.p`

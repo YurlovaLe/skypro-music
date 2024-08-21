@@ -8,7 +8,7 @@ import { Filter } from "../Filter/Filter";
 import { Track } from "../Track/Track";
 
 import { TracksSkeleton } from "../TracksSkeleton";
-import * as S from "./Tracklist.style";
+import * as S from "./Tracklist.styles";
 
 export function Tracklist({ items = [], favoriteItems = [], isLoading, heading, categories = [] }) {
   const [sortType, setSortType] = useState('По умолчанию');
@@ -59,6 +59,7 @@ export function Tracklist({ items = [], favoriteItems = [], isLoading, heading, 
 
   const genres = items.map(item => item.genre);
   const authors = items.map(item => item.author);
+  console.log(filteredItems);
   const listItems = filteredItems.map((item) => {
     const isFavorite = favoriteItems.find(({ id }) => id === item.id);
     return (
@@ -79,7 +80,7 @@ export function Tracklist({ items = [], favoriteItems = [], isLoading, heading, 
 
   return (
     <>
-      <Search setNameSearch={setNameSearch} nameSearch={nameSearch}/>
+      <Search setNameSearch={setNameSearch} nameSearch={nameSearch} />
       <S.CenterblockH2>{heading}</S.CenterblockH2>
       {
         categories.length 

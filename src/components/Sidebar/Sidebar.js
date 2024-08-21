@@ -1,4 +1,4 @@
-import * as S from "./Sidebar.style";
+import * as S from "./Sidebar.styles";
 
 export function Sidebar({ isLoading }) {
 

@@ -1,4 +1,4 @@
-import * as S from "./Track/Track.style";
+import * as S from "./Track/Track.styles";
 
 export function TracksSkeleton() {
   const skeletons = [];

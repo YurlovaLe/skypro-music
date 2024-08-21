@@ -10,7 +10,7 @@ import { handleRefreshApi } from "../api";
 import { MenuList } from "../components/MenuList/MenuList";
 import { Player } from "../components/Player/Player";
 import { Sidebar } from "../components/Sidebar/Sidebar";
-import * as S from "../App.style";
+import * as S from "../App.styles";
 
 function MainPage() {
   const { user, logout, updateUser } = useContext(UserContext);

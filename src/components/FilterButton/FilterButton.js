@@ -1,4 +1,4 @@
-import * as S from "./FilterButton.style";
+import * as S from "./FilterButton.styles";
 
 export function FilterButton({
   text,

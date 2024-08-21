@@ -1,8 +1,11 @@
-import { currentTrackSelector, isPlayingSelector } from "../../store/selectors/player";
+import {
+  currentTrackSelector,
+  isPlayingSelector,
+} from "../../store/selectors/player";
 import { useSelector } from "react-redux";
 import { timeInMin } from "../../App.helpers";
 
-import * as S from "./Track.style";
+import * as S from "./Track.styles";
 
 export function Track({
   comment,
@@ -17,16 +20,19 @@ export function Track({
 }) {
   const currentTrackId = useSelector(currentTrackSelector);
   const isPlaying = useSelector(isPlayingSelector);
-  
+
   return (
     <S.PlaylistItem>
       <S.PlaylistTrack>
         <S.TrackTitle>
           <S.TrackTitleImage>
-            {(currentTrackId === trackId) ? (<S.TrackTitleCircle $isPlaying={isPlaying}></S.TrackTitleCircle>) 
-            : (<S.TrackTitleSvg alt="music" >
+            {currentTrackId === trackId ? (
+              <S.TrackTitleCircle $isPlaying={isPlaying}></S.TrackTitleCircle>
+            ) : (
+              <S.TrackTitleSvg alt="music">
                 <use xlinkHref="/img/icon/sprite.svg#icon-note"></use>
-              </S.TrackTitleSvg>)}
+              </S.TrackTitleSvg>
+            )}
           </S.TrackTitleImage>
           <div className="track__title-text">
             <S.TrackTitleLink onClick={onClick}>
@@ -38,17 +44,19 @@ export function Track({
           <S.TrackAuthorLink href="http://">{singer}</S.TrackAuthorLink>
         </S.TrackAuthor>
         <S.TrackAlbum>
-          <S.TrackAlbumLink href="http://">
-          {album}
-          </S.TrackAlbumLink>
+          <S.TrackAlbumLink href="http://">{album}</S.TrackAlbumLink>
         </S.TrackAlbum>
         <div className="track__time">
-          <S.TrackTimeSvg $isFavorite={isFavorite} onClick={onLikeClick} alt="time">
+          <S.TrackTimeSvg
+            $isFavorite={isFavorite}
+            onClick={onLikeClick}
+            alt="time"
+          >
             <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
           </S.TrackTimeSvg>
           <S.TrackTimeText>{timeInMin(duration)}</S.TrackTimeText>
         </div>
       </S.PlaylistTrack>
     </S.PlaylistItem>
-  )
+  );
 }

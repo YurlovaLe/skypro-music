@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FilterButton } from "../FilterButton/FilterButton";
-import * as S from "./Filter.style";
+import * as S from "./Filter.styles";
 
 const sortOptions = ['По умолчанию', 'Сначала старые', 'Сначала новые'];
 
