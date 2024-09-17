@@ -1,15 +1,19 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../../store/hooks.ts';
 import { Track } from '../Track/Track.tsx';
-import { useLikeClick } from '../../hooks/useLikeClick.ts';
-import { setCurrentTrack } from '../../store/actions/creators/player.ts';
-import { TracklistItemsProps } from './TracklistItems.types.ts';
+import { setCurrentTrack } from '../../store/slices.ts';
+import { ListItemsProps } from './ListItems.types.ts';
 
-export const TracklistItems = ({
-  items, sortType, authorsFilter, genresFilter, nameSearch, favoriteItems,
-}: TracklistItemsProps) => {
-  const dispatch = useDispatch();
-  const handleLikeClick = useLikeClick();
+export const ListItems = ({
+  items,
+  sortType,
+  authorsFilter,
+  genresFilter,
+  nameSearch,
+  favoriteItems,
+}: ListItemsProps) => {
+  const dispatch = useAppDispatch();
   const sortedItems = [...items];
   (sortedItems).sort((a, b) => {
     switch (sortType) {
@@ -45,7 +49,9 @@ export const TracklistItems = ({
         return true;
       }
 
-      return item.name.includes(nameSearch);
+      return (
+        (item.name).toLocaleLowerCase().includes(nameSearch)
+        || (item.author).toLocaleLowerCase().includes(nameSearch));
     });
 
   return filteredItems.map((item) => {
@@ -59,8 +65,7 @@ export const TracklistItems = ({
         trackId={item.id}
         isFavorite={isFavorite}
         key={item.id}
-        onLikeClick={() => handleLikeClick(isFavorite, item.id)}
-        onClick={() => dispatch(setCurrentTrack(item.id, filteredItems))}
+        onClick={() => dispatch(setCurrentTrack({ id: item.id, tracklist: filteredItems }))}
       />
     );
   });

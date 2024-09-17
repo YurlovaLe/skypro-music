@@ -13,7 +13,7 @@ export function Search({ setNameSearch, nameSearch }: SearchProps) {
         placeholder="Поиск"
         name="search"
         value={nameSearch}
-        onChange={(event) => setNameSearch(event.target.value)}
+        onChange={(event) => setNameSearch(event.target.value.toLocaleLowerCase())}
         autoComplete="off"
       />
     </S.CenterBlockSearch>

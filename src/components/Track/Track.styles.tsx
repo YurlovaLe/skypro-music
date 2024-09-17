@@ -12,14 +12,25 @@ export const PlaylistTrack = styled.div`
   align-items: center;
 `;
 
-export const Track = styled.tr`
+export const Track = styled.div`
+  display: flex;
+  cursor: pointer;
+  @media (max-width: 760px) {
+    gap: 12px;
+  };
 `;
 
-export const TrackTitleBox = styled.td`
+export const TrackTitleBox = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 17px;
+  width: 36%;
+
+  @media (max-width: 760px) {
+    width: 50%;
+    gap: 10px;
+  };
 `;
 
 export const TrackTitleImage = styled.div`
@@ -62,39 +73,43 @@ export const TrackTitle = styled.div`
   line-height: 18px;
 `;
 
-export const TrackAuthor = styled.td`
+export const TrackAuthor = styled.div`
   width: 27%;
-`;
-
-export const TrackAuthorLink = styled.a`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
+  align-self: center;
   line-height: 24px;
-  color: #ffffff;
-  text-align: left;
+
+  @media (max-width: 760px) {
+    color: #696969;
+    width: 40%
+  };
 `;
 
-export const TrackAlbum = styled.td`
+export const TrackAlbum = styled.div`
   width: 27%;
-`;
-
-export const TrackAlbumLink = styled.a`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
+  align-self: center;
   line-height: 24px;
   color: #696969;
+
+  @media (max-width: 760px) {
+    display: none;
+  };
 `;
 
-export const TrackTime = styled.td`
+export const TrackTime = styled.div`
   width: 10%;
+  text-align: right;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  @media (max-width: 760px) {
+    width: 10%;
+  };
 `;
 
 export const TrackTimeSvg = styled.svg<{$isFavorite: boolean}>`
   width: 14px;
   height: 12px;
-  margin-right: 17px;
   fill: ${({ $isFavorite }) => ($isFavorite ? '#B672FF' : 'transparent')};
   stroke: #696969;
 `;
@@ -106,4 +121,8 @@ export const TrackTimeText = styled.span`
   line-height: 24px;
   text-align: right;
   color: #696969;
+
+  @media (max-width: 760px) {
+    display: none;
+  };
 `;

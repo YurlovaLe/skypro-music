@@ -17,6 +17,10 @@ export const FilterBtn = styled.div<{$isShown: boolean}>`
     color: #d9b6ff;
     cursor: pointer;
   };
+
+    @media (max-width: 760px) {
+      padding: 6px 10px;
+    };
 `;
 
 export const Menu = styled.ul` 

@@ -1,5 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { audioplayerReducer } from './reducers/reducer.ts';
+import { setupListeners } from '@reduxjs/toolkit/query';
+
+import audioplayerReducer from './slices.ts';
 import { catalogApi } from '../services/catalog.ts';
 
 export const store = configureStore({
@@ -9,3 +11,8 @@ export const store = configureStore({
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(catalogApi.middleware),
 });
+
+setupListeners(store.dispatch);
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

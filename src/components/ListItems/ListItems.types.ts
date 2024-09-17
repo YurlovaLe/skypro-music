@@ -1,6 +1,6 @@
 import { TracksType } from '../../App.types.ts';
 
-export type TracklistItemsProps = {
+export type ListItemsProps = {
   items: TracksType,
   sortType: string,
   authorsFilter: string[],

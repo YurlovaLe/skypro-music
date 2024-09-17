@@ -4,7 +4,7 @@ import { Outlet, Route, Routes } from 'react-router-dom';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 
 import { useGetAllTracksQuery, useGetFavoriteTracksQuery } from '../services/catalog.ts';
-import { currentTrackSelector } from '../store/selectors/player.ts';
+import { selectPlayer } from '../store/slices.ts';
 import { useUserContext } from '../App.context.tsx';
 import { handleRefreshApi } from '../api.ts';
 
@@ -33,7 +33,7 @@ export function MainPage(): JSX.Element {
     isLoading: isFavoriteLoading,
   } = useGetFavoriteTracksQuery(user.access);
 
-  const currentTrack = useSelector(currentTrackSelector);
+  const { currentTrackId } = useSelector(selectPlayer);
   const [isLoading, setIsLoading] = useState(true);
 
   const alltracks = useMemo(() => (
@@ -109,16 +109,16 @@ export function MainPage(): JSX.Element {
             </S.Main>
             <S.Bar>
               {
-            currentTrack
-              ? (
-                <Player
-                  isLoading={isLoading}
-                  alltracks={alltracks}
-                  currentTrack={currentTrack}
-                  favoriteTracks={favoriteTracks}
-                />
-              )
-              : null
+              currentTrackId
+                ? (
+                  <Player
+                    isLoading={isLoading}
+                    alltracks={alltracks}
+                    currentTrack={currentTrackId}
+                    favoriteTracks={favoriteTracks}
+                  />
+                )
+                : null
           }
             </S.Bar>
           </S.Container>

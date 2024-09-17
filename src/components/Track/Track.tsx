@@ -1,14 +1,12 @@
 import React from 'react';
 
 import { useSelector } from 'react-redux';
-import {
-  currentTrackSelector,
-  isPlayingSelector,
-} from '../../store/selectors/player.ts';
-
+import { selectPlayer } from '../../store/slices.ts';
+import { useLikeClick } from '../../hooks/useLikeClick.ts';
 import { timeInMin } from '../../App.helpers.ts';
 
 import * as S from './Track.styles.tsx';
+
 import { TrackProps } from './Track.types.ts';
 
 export function Track({
@@ -17,15 +15,14 @@ export function Track({
   album,
   duration,
   onClick,
-  onLikeClick,
   trackId,
   isFavorite,
 }: TrackProps) {
-  const currentTrackId = useSelector(currentTrackSelector);
-  const isPlaying = useSelector(isPlayingSelector);
+  const { currentTrackId, isPlaying } = useSelector(selectPlayer);
+  const onLikeClick = useLikeClick();
 
   return (
-    <S.Track>
+    <S.Track onClick={onClick}>
       <S.TrackTitleBox>
         <S.TrackTitleImage>
           {currentTrackId === trackId ? (
@@ -36,20 +33,23 @@ export function Track({
             </S.TrackTitleSvg>
           )}
         </S.TrackTitleImage>
-        <S.TrackTitle onClick={onClick}>
+        <S.TrackTitle>
           {name}
         </S.TrackTitle>
       </S.TrackTitleBox>
       <S.TrackAuthor>
-        <S.TrackAuthorLink href="http://">{singer}</S.TrackAuthorLink>
+        {singer}
       </S.TrackAuthor>
       <S.TrackAlbum>
-        <S.TrackAlbumLink href="http://">{album}</S.TrackAlbumLink>
+        {album}
       </S.TrackAlbum>
       <S.TrackTime>
         <S.TrackTimeSvg
           $isFavorite={isFavorite}
-          onClick={onLikeClick}
+          onClick={(event) => {
+            event.stopPropagation();
+            onLikeClick(isFavorite, trackId);
+          }}
         >
           <use xlinkHref="/img/icon/sprite.svg#icon-like" />
         </S.TrackTimeSvg>

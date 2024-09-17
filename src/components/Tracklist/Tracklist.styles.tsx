@@ -1,8 +1,9 @@
 import { css, styled } from 'styled-components';
 
-export const Table = styled.table`
-  border-spacing: 12px;
-  display: block;
+export const Table = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 `;
 
 export const CenterblockH2 = styled.h2`
@@ -10,6 +11,10 @@ export const CenterblockH2 = styled.h2`
   font-size: 60px;
   line-height: 64px;
   letter-spacing: -0.8px;
+
+  @media (max-width: 760px) {
+    display: none;
+  }
 `;
 
 export const CenterblockContent = styled.div`
@@ -25,10 +30,15 @@ export const ContentTitle = styled.div`
   margin-bottom: 24px;
 `;
 
-export const TableTitleRow = styled.tr`
+export const TableTitleRow = styled.div`
+  display: flex;
+
+  @media (max-width: 760px) {
+    display: none;
+  };
 `;
 
-export const TableTitle = styled.th<{$width: string}>`
+export const TableTitle = styled.div<{$width: string}>`
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;
@@ -39,22 +49,19 @@ export const TableTitle = styled.th<{$width: string}>`
   &:last-child {
     text-align: right;
   };
+  width: ${(props) => (props.$width)};
 `;
 
 export const TableBody = styled.div`
   height: 560px;
   overflow-x: auto;
-`;
-
-export const ContentPlaylist = styled.div`
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
   flex-direction: column;
-  overflow: scroll;
+  gap: 12px;
+
+  @media (min-width: 960px) {
+    min-width: 548px;
+  }
 `;
 
 const PlaylistTitleMixin = css`

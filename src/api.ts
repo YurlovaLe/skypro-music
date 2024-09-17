@@ -13,8 +13,8 @@ export async function handleLoginApi({ email, password }) {
 
   if (!response.ok) {
     if (response.status === 401) {
-      const { detail } = await response.json();
-      throw new Error(detail);
+      const { message } = await response.json();
+      throw new Error(message);
     }
 
     throw new Error('Не удалось войти');
@@ -65,9 +65,9 @@ export async function handleRegisterApi({ email, password }) {
     throw new Error('Не удалось зарегистрировать пользователя');
   }
 
-  const data = await response.json();
+  const { result } = await response.json();
 
-  return data;
+  return result;
 }
 
 export async function handleRefreshApi(refreshToken) {
