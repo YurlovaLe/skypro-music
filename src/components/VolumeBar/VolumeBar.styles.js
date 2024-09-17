@@ -4,6 +4,10 @@ export const BarVolumeBlock = styled.div`
   display: flex;
   align-items: center;
   gap: 17px;
+  
+  @media (max-width: 760px) {
+    gap: 6px;
+  };
 `;
 
 export const BarVolumeImage = styled.div`

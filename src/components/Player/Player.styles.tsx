@@ -17,6 +17,10 @@ export const BarPlayerBlock = styled.div`
   justify-content: space-between;
   background-color: rgb(28, 28, 28);
   padding: 0 36px;
+
+  @media (max-width: 760px) {
+    padding: 0 16px;
+  };
 `;
 
 export const BarPlayer = styled.div`
@@ -27,6 +31,10 @@ export const BarPlayer = styled.div`
 export const PlayerControls = styled.div`
   display: flex;
   gap: 32px;
+
+  @media (max-width: 760px) {
+    gap: 20px;
+  };
 `;
 
 export const PlayerBtn = styled.div`
@@ -58,6 +66,10 @@ export const PlayerTrackPlay = styled.div`
   display: flex;
   gap: 32px;
   align-items: center;
+
+  @media (max-width: 760px) {
+    display: none;
+  };
 `;
 
 export const TrackPlayContain = styled.div`

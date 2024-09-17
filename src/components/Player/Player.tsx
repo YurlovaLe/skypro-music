@@ -1,14 +1,13 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../store/hooks.ts';
 
 import { timeInMin } from '../../App.helpers.ts';
 import { useLikeClick } from '../../hooks/useLikeClick.ts';
 
 import {
-  startPlay, stopPlay, nextTrack, prevTrack, toggleShufled,
-} from '../../store/actions/creators/player.ts';
-import { isPlayingSelector, isShuffledSelector } from '../../store/selectors/player.ts';
+  startPlay, stopPlay, nextTrack, prevTrack, toggleShufled, selectPlayer,
+} from '../../store/slices.ts';
 
 import { VolumeBar } from '../VolumeBar/index.ts';
 import { RangeBar } from '../RangeBar/RangeBar.tsx';
@@ -23,9 +22,9 @@ export function Player({
   currentTrack,
   favoriteTracks,
 }: PlayerProps) {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const handleLikeClick = useLikeClick();
-  const isPlaying = useSelector(isPlayingSelector);
+  const { isPlaying, isShuffled } = useAppSelector(selectPlayer);
   const trackInfo = alltracks.find((track) => track.id === currentTrack) || {};
   const isTrackInFavorites = !!favoriteTracks.find(({ id }) => id === currentTrack);
   const audioRef = useRef<null | HTMLAudioElement>(null);
@@ -94,6 +93,7 @@ export function Player({
           {timeInMin(currTime)}
           {' '}
           /
+          {' '}
           {timeInMin(duration)}
         </S.BarTime>
         <RangeBar
@@ -135,7 +135,7 @@ export function Player({
               </S.PlayerBtn>
               <S.PlayerBtn>
                 <S.PlayerBtnSvg
-                  $isUse={useSelector(isShuffledSelector)}
+                  $isUse={isShuffled}
                   onClick={toggleShufledPlaylist}
                 >
                   <use xlinkHref="/img/icon/sprite.svg#icon-shuffle" />

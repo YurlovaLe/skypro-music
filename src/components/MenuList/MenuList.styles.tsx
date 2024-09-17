@@ -2,10 +2,15 @@ import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 export const MainNav = styled.nav`
-  max-width: 208px;
   display: flex;
   flex-direction: column;
   gap: 46px;
+  
+  @media (max-width: 760px) {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+  };
 `;
 
 export const LogoImage = styled.img`
@@ -30,6 +35,10 @@ export const NavMenu = styled.div`
   flex-direction: column;
   gap: 36px;
   cursor: pointer;
+
+  @media (max-width: 760px) {
+    align-items: flex-end;
+  };
 `;
 
 export const MenuList = styled.ul`

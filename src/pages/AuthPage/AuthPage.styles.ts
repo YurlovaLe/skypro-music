@@ -6,7 +6,7 @@ export const PageContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.85);
 `;
 
-export const ModalForm = styled.div`
+export const ModalForm = styled.form`
   --modal-width: 366px;
   --modal-height: 439px;
 
@@ -33,10 +33,10 @@ export const ModalLogoImage = styled.img`
   height: 21px;
 `;
 
-export const ModalInput = styled.input`
+export const ModalInput = styled.input<{$isErrored?: boolean}>`
   width: 100%;
-  border: none;
   border-bottom: 1px solid #d0cece;
+  border: ${(props) => (props.$isErrored ? '1px solid red' : 'none')};
   padding: 8px 1px;
 
   &::placeholder {
@@ -108,11 +108,11 @@ export const Inputs = styled.div`
   width: 100%;
 `;
 
-export const Error = styled.div`
+export const Error = styled.div<{$isVisible: boolean}>`
+  visibility: ${(props) => (props.$isVisible ? 'visible' : 'hidden')};
   color: coral;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 24px;
-  margin-top: 20px;
+  font-size: 14px;
+  line-height: 20px;
   text-align: left;
 `;

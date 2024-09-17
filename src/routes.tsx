@@ -4,21 +4,22 @@ import { useUserContext } from './App.context.tsx';
 import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute.tsx';
 
 import { MainPage } from './pages/MainPage.tsx';
-import { AuthPage } from './pages/AuthPage.tsx';
 import { Category } from './pages/Category.tsx';
 import { Favorites } from './pages/Favorites.tsx';
 import { Tracks } from './pages/Tracks.tsx';
 import { NotFound } from './pages/NotFound.tsx';
+import { AuthPage } from './pages/AuthPage/AuthPage.tsx';
+import { RegisterPage } from './pages/RegisterPage/RegisterPage.tsx';
 
 export function AppRoutes() {
   const { user } = useUserContext();
 
   return (
     <Routes>
-      <Route path="/login" element={<AuthPage isLoginMode />} />
-      <Route path="/register" element={<AuthPage isLoginMode={false} />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/login" element={<AuthPage />} />
       <Route
-        path="/"
+        path="/*"
         element={(
           <ProtectedRoute redirectPath="/login" isAllowed={Boolean(user.id)}>
             <MainPage />
@@ -26,7 +27,7 @@ export function AppRoutes() {
         )}
       >
         <Route
-          path="/"
+          index
           element={<Tracks />}
         />
         <Route

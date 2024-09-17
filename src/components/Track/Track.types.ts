@@ -4,7 +4,6 @@ export type TrackProps = {
   album: string,
   duration: number,
   onClick: () => void,
-  onLikeClick: () => void,
   trackId: number,
   isFavorite: boolean,
 };
