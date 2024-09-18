@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import * as S from './Sidebar.styles.tsx';
+
+import * as S from './Sidebar.styles';
 
 export function Sidebar({ isLoading }: {isLoading: boolean}) {
   return (

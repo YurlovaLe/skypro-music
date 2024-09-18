@@ -1,18 +1,19 @@
 import React from 'react';
-// import { useDispatch } from 'react-redux';
-import { useAppDispatch } from '../../store/hooks.ts';
-import { Track } from '../Track/Track.tsx';
-import { setCurrentTrack } from '../../store/slices.ts';
-import { ListItemsProps } from './ListItems.types.ts';
 
-export const ListItems = ({
+import { setCurrentTrack } from '../../store/slices';
+import { useAppDispatch } from '../../store/hooks';
+import { Track } from '../Track';
+
+import { ListItemsProps } from './ListItems.types';
+
+export function ListItems({
   items,
   sortType,
   authorsFilter,
   genresFilter,
   nameSearch,
   favoriteItems,
-}: ListItemsProps) => {
+}: ListItemsProps) {
   const dispatch = useAppDispatch();
   const sortedItems = [...items];
   (sortedItems).sort((a, b) => {
@@ -54,19 +55,23 @@ export const ListItems = ({
         || (item.author).toLocaleLowerCase().includes(nameSearch));
     });
 
-  return filteredItems.map((item) => {
-    const isFavorite = !!favoriteItems.find(({ id }) => id === item.id);
-    return (
-      <Track
-        name={item.name}
-        singer={item.author}
-        album={item.album}
-        duration={item.duration_in_seconds}
-        trackId={item.id}
-        isFavorite={isFavorite}
-        key={item.id}
-        onClick={() => dispatch(setCurrentTrack({ id: item.id, tracklist: filteredItems }))}
-      />
-    );
-  });
-};
+  return (
+    <>
+      {filteredItems.map((item) => {
+        const isFavorite = !!favoriteItems.find(({ id }) => id === item.id);
+        return (
+          <Track
+            name={item.name}
+            singer={item.author}
+            album={item.album}
+            duration={item.duration_in_seconds}
+            trackId={item.id}
+            isFavorite={isFavorite}
+            key={item.id}
+            onClick={() => dispatch(setCurrentTrack({ id: item.id, tracklist: filteredItems }))}
+          />
+        );
+      })}
+    </>
+  );
+}

@@ -1,6 +1,8 @@
 import React from 'react';
-import * as S from './FilterButton.styles.tsx';
-import { FilterButtonProps } from './FilterButton.types.ts';
+
+import { FilterButtonProps } from './FilterButton.types';
+
+import * as S from './FilterButton.styles';
 
 export function FilterButton({
   text,

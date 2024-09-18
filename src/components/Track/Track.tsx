@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { useSelector } from 'react-redux';
-import { selectPlayer } from '../../store/slices.ts';
-import { useLikeClick } from '../../hooks/useLikeClick.ts';
-import { timeInMin } from '../../App.helpers.ts';
+import { useAppSelector } from '../../store/hooks';
+import { selectPlayer } from '../../store/slices';
+import { useLikeClick } from '../../hooks/useLikeClick';
+import { timeInMin } from '../../App.helpers';
 
-import * as S from './Track.styles.tsx';
+import { TrackProps } from './Track.types';
 
-import { TrackProps } from './Track.types.ts';
+import * as S from './Track.styles';
 
 export function Track({
   name,
@@ -18,7 +18,7 @@ export function Track({
   trackId,
   isFavorite,
 }: TrackProps) {
-  const { currentTrackId, isPlaying } = useSelector(selectPlayer);
+  const { currentTrackId, isPlaying } = useAppSelector(selectPlayer);
   const onLikeClick = useLikeClick();
 
   return (

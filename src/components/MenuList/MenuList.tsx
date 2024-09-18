@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useUserContext } from '../../App.context.tsx';
-import * as S from './MenuList.styles.tsx';
+import { useUserContext } from '../../App.context';
+
+import * as S from './MenuList.styles';
 
 export function MenuList() {
   const { logout } = useUserContext();

@@ -1,6 +1,8 @@
 import React from 'react';
-import * as S from './RangeBar.styles.tsx';
-import { RangeBarProps } from './RangeBar.types.ts';
+
+import { RangeBarProps } from './RangeBar.types';
+
+import * as S from './RangeBar.styles';
 
 export function RangeBar({
   currentValue, maxValue, onRangeChange, color,

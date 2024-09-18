@@ -1,5 +1,5 @@
-import { useAddTrackToFavoriteMutation, useDeleteTrackFromFavoriteMutation } from '../services/catalog.ts';
-import { useUserContext } from '../App.context.tsx';
+import { useAddTrackToFavoriteMutation, useDeleteTrackFromFavoriteMutation } from '../services/catalog';
+import { useUserContext } from '../App.context';
 
 export function useLikeClick() {
   const { user } = useUserContext();

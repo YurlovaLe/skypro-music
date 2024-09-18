@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 
 export const PlaylistItem = styled.div`
-  width: 100%;
+  width: 560px;
   display: block;
   margin-bottom: 12px;
 `;

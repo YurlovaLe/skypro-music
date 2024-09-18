@@ -1,20 +1,21 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import React, { useEffect, useRef, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../store/hooks.ts';
 
-import { timeInMin } from '../../App.helpers.ts';
-import { useLikeClick } from '../../hooks/useLikeClick.ts';
-
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import {
   startPlay, stopPlay, nextTrack, prevTrack, toggleShufled, selectPlayer,
-} from '../../store/slices.ts';
+} from '../../store/slices';
 
-import { VolumeBar } from '../VolumeBar/index.ts';
-import { RangeBar } from '../RangeBar/RangeBar.tsx';
+import { timeInMin } from '../../App.helpers';
+import { useLikeClick } from '../../hooks/useLikeClick';
 
-import * as S from './Player.styles.tsx';
-import { PlayerProps } from './Player.types.ts';
-import { TrackType } from '../../App.types.ts';
+import { VolumeBar } from '../VolumeBar';
+import { RangeBar } from '../RangeBar';
+
+import { PlayerProps } from './Player.types';
+import { TrackType } from '../../App.types';
+
+import * as S from './Player.styles';
 
 export function Player({
   isLoading,
@@ -72,9 +73,11 @@ export function Player({
     dispatch(prevTrack());
   };
 
-  const setTrackTimes = (event) => {
-    setDuration(isNaN(event.target.duration) ? 0 : event.target.duration);
-    setCurrTime(event.target.currentTime);
+  const setTrackTimes = (event: Event) => {
+    setDuration(isNaN((event.target as HTMLMediaElement).duration)
+      ? 0
+      : (event.target as HTMLMediaElement).duration);
+    setCurrTime((event.target as HTMLMediaElement).currentTime);
   };
 
   return (

@@ -1,11 +1,14 @@
 /* eslint-disable no-shadow */
 import React, { useState } from 'react';
-import { useFormik } from 'formik';
 import { Link } from 'react-router-dom';
-import { handleLoginApi } from '../../api.ts';
-import { useUserContext } from '../../App.context.tsx';
-import * as S from './AuthPage.styles.ts';
-import { AuthPageSchema } from './AuthPage.validation.ts';
+import { useFormik } from 'formik';
+
+import { handleLoginApi } from '../../api';
+import { useUserContext } from '../../App.context';
+
+import { AuthPageSchema } from './AuthPage.validation';
+
+import * as S from './AuthPage.styles';
 
 export function AuthPage() {
   const { login } = useUserContext();

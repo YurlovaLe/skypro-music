@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import type { TracksType } from '../App.types';
-import { RootState } from './store.ts';
+import { RootState } from './store';
 
-type InitialState = {
+type Player = {
   isPlaying: boolean,
   playlist: TracksType,
   currentTrackId: number,
@@ -11,7 +11,7 @@ type InitialState = {
   shuffledPlaylist: TracksType,
 };
 
-const initialState: InitialState = {
+const initialState: Player = {
   isPlaying: false,
   playlist: [],
   currentTrackId: 0,
@@ -69,7 +69,7 @@ export const audioplayerSlice = createSlice({
   },
 });
 
-export const selectPlayer = (state: RootState): InitialState => state.audioplayer;
+export const selectPlayer = (state: RootState): Player => state.audioplayer;
 
 export const {
   startPlay,

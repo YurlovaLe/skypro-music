@@ -1,1 +1,1 @@
-export { Player } from './Player.tsx';
+export { Player } from './Player';

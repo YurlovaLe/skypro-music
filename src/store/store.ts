@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
-import audioplayerReducer from './slices.ts';
-import { catalogApi } from '../services/catalog.ts';
+import audioplayerReducer from './slices';
+import { catalogApi } from '../services/catalog';
 
 export const store = configureStore({
   reducer: {

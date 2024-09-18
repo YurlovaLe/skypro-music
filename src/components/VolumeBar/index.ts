@@ -1,1 +1,1 @@
-export { VolumeBar } from './VolumeBar.tsx';
+export { VolumeBar } from './VolumeBar';

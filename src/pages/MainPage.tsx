@@ -1,17 +1,18 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { useSelector } from 'react-redux';
 import { Outlet, Route, Routes } from 'react-router-dom';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 
-import { useGetAllTracksQuery, useGetFavoriteTracksQuery } from '../services/catalog.ts';
-import { selectPlayer } from '../store/slices.ts';
-import { useUserContext } from '../App.context.tsx';
-import { handleRefreshApi } from '../api.ts';
+import { useGetAllTracksQuery, useGetFavoriteTracksQuery } from '../services/catalog';
+import { selectPlayer } from '../store/slices';
+import { useAppSelector } from '../store/hooks';
+import { useUserContext } from '../App.context';
+import { handleRefreshApi } from '../api';
 
-import { MenuList } from '../components/MenuList/MenuList.tsx';
-import { Player } from '../components/Player/Player.tsx';
-import { Sidebar } from '../components/Sidebar/Sidebar.tsx';
-import * as S from '../App.styles.tsx';
+import { MenuList } from '../components/MenuList';
+import { Player } from '../components/Player';
+import { Sidebar } from '../components/Sidebar';
+
+import * as S from '../App.styles';
 
 export function isFetchBaseQueryError(
   error: unknown,
@@ -33,7 +34,7 @@ export function MainPage(): JSX.Element {
     isLoading: isFavoriteLoading,
   } = useGetFavoriteTracksQuery(user.access);
 
-  const { currentTrackId } = useSelector(selectPlayer);
+  const { currentTrackId } = useAppSelector(selectPlayer);
   const [isLoading, setIsLoading] = useState(true);
 
   const alltracks = useMemo(() => (

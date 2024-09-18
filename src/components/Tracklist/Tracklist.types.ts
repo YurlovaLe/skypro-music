@@ -1,4 +1,4 @@
-import { TracksType } from '../../App.types.ts';
+import { TracksType } from '../../App.types';
 
 export type TracklistProps = {
   items: TracksType,
