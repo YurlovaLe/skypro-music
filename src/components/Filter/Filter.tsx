@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { FilterButton } from '../FilterButton/FilterButton.tsx';
-import * as S from './Filter.styles.ts';
-import { FilterProps } from './Filter.types.ts';
+import { FilterButton } from '../FilterButton';
+
+import { FilterProps } from './Filter.types';
+
+import * as S from './Filter.styles';
 
 const sortOptions = ['По умолчанию', 'Сначала старые', 'Сначала новые'];
 

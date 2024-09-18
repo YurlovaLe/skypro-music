@@ -11,7 +11,7 @@ export const catalogApi = createApi({
   tagTypes: ['favorites'],
   endpoints: (builder) => ({
     getAllTracks: builder.query<GetAllTraksResponse, void>({
-      query: () => 'track/all/',
+      query: () => 'track/all',
       transformResponse: ({ data }) => (data),
     }),
     getFavoriteTracks: builder.query<GetAllTraksResponse, string>({

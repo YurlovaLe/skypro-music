@@ -1,12 +1,13 @@
 /* eslint-disable no-shadow */
 import React, { useState } from 'react';
-import { useFormik } from 'formik';
 import { Link } from 'react-router-dom';
-import { handleLoginApi, handleRegisterApi } from '../../api.ts';
-import { useUserContext } from '../../App.context.tsx';
+import { useFormik } from 'formik';
+import { handleLoginApi, handleRegisterApi } from '../../api';
+import { useUserContext } from '../../App.context';
 
-import { RegisterPageSchema } from './RegisterPage.validation.ts';
-import * as S from '../AuthPage/AuthPage.styles.ts';
+import { RegisterPageSchema } from './RegisterPage.validation';
+
+import * as S from '../AuthPage/AuthPage.styles';
 
 export function RegisterPage() {
   const { login } = useUserContext();

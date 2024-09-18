@@ -1,8 +1,9 @@
 import React from 'react';
-import { RangeBar } from '../RangeBar/RangeBar.tsx';
+import { RangeBar } from '../RangeBar';
+
+import { VolumeBarProps } from './VolumeBar.types';
 
 import * as S from './VolumeBar.styles';
-import { VolumeBarProps } from './VolumeBar.types.ts';
 
 export function VolumeBar({
   setVolumeMuted, isMuted, currVolume, manualSetVolume,

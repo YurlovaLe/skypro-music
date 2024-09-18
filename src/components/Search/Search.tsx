@@ -1,6 +1,8 @@
 import React from 'react';
-import * as S from './Search.styles.tsx';
-import { SearchProps } from './Search.types.ts';
+
+import { SearchProps } from './Search.types';
+
+import * as S from './Search.styles';
 
 export function Search({ setNameSearch, nameSearch }: SearchProps) {
   return (

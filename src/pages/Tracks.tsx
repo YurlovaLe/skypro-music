@@ -1,6 +1,6 @@
 import React from 'react';
 import { useOutletContext } from 'react-router-dom';
-import { Tracklist } from '../components/Tracklist/Tracklist.tsx';
+import { Tracklist } from '../components/Tracklist';
 
 import type { OutletContextType } from '../App.types';
 

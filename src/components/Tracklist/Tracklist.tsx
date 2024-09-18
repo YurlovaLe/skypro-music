@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 
-import { Search } from '../Search/Search.tsx';
-import { Filter } from '../Filter/Filter.tsx';
+import { Search } from '../Search';
+import { Filter } from '../Filter';
+import { ListItems } from '../ListItems';
 
-import { TracksSkeleton } from '../TracksSkeleton.tsx';
+import { TracklistProps } from './Tracklist.types';
 
-import * as S from './Tracklist.styles.tsx';
-
-import { TracklistProps } from './Tracklist.types.ts';
-import { ListItems } from '../ListItems/ListItems.tsx';
+import * as S from './Tracklist.styles';
 
 export function Tracklist({
   items, favoriteItems, isLoading, heading, categories,
@@ -30,8 +28,8 @@ export function Tracklist({
           ? null
           : (
             <Filter
-              authors={[...new Set(authors)]}
-              genres={[...new Set(genres)]}
+              authors={[...new Set(authors)] as string[]}
+              genres={[...new Set(genres)] as string[]}
               sortType={sortType}
               setSortType={setSortType}
               authorsFilter={authorsFilter}
@@ -55,9 +53,8 @@ export function Tracklist({
 
         <S.TableBody>
           {
-            isLoading
-              ? <TracksSkeleton />
-              : (
+            !isLoading
+              && (
                 <ListItems
                   items={items}
                   sortType={sortType}

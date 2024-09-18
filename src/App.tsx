@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { AppProvider } from './App.context.tsx';
-import { AppRoutes } from './routes.tsx';
-import { GlobalStyle } from './styles.tsx';
+import { AppProvider } from './App.context';
+import { AppRoutes } from './routes';
+import { GlobalStyle } from './styles';
 
 export function App() {
   return (

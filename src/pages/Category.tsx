@@ -1,7 +1,8 @@
 import React from 'react';
 import { useParams, useOutletContext } from 'react-router-dom';
-import { Tracklist } from '../components/Tracklist/Tracklist.tsx';
-import { OutletContextType } from '../App.types.ts';
+import { Tracklist } from '../components/Tracklist';
+
+import { OutletContextType } from '../App.types';
 
 export function Category() {
   const categories = ['Классическая музыка', 'Электронная музыка', 'Рок музыка'];
