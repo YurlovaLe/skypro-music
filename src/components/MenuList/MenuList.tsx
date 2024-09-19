@@ -24,7 +24,7 @@ export function MenuList() {
   return (
     <S.MainNav>
       <Link to="/">
-        <S.LogoImage src="/img/logo.png" alt="logo" />
+        <S.LogoImage src="img/logo.png" alt="logo" />
       </Link>
       <S.NavMenu>
         <S.NavBurger onClick={toggleVisibility}>

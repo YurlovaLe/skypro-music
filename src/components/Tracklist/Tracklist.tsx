@@ -46,7 +46,7 @@ export function Tracklist({
           <S.TableTitle $width="27%">АЛЬБОМ</S.TableTitle>
           <S.TableTitle $width="10%">
             <S.PlaylistTitleSvg>
-              <use xlinkHref="/img/icon/sprite.svg#icon-watch" />
+              <use xlinkHref="img/icon/sprite.svg#icon-watch" />
             </S.PlaylistTitleSvg>
           </S.TableTitle>
         </S.TableTitleRow>

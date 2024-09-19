@@ -94,7 +94,7 @@ export function MainPage(): JSX.Element {
                   <div>{user.username}</div>
                   <S.SideBarIcon onClick={logout}>
                     <svg>
-                      <use xlinkHref="/img/icon/sprite.svg#logout" />
+                      <use xlinkHref="img/icon/sprite.svg#logout" />
                     </svg>
                   </S.SideBarIcon>
                 </S.SideBarPersonal>

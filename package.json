@@ -20,10 +20,13 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier —write ."
   },
+  "homepage": "skypro-music",
   "eslintConfig": {
     "extends": [
       "eslint:recommended",
@@ -35,7 +38,13 @@
     "settings": {
       "import/resolver": {
         "node": {
-          "extensions": [".ts", ".tsx", ".js", ".jsx", ".json"]
+          "extensions": [
+            ".ts",
+            ".tsx",
+            ".js",
+            ".jsx",
+            ".json"
+          ]
         }
       }
     },
@@ -106,6 +115,7 @@
     "eslint-config-airbnb-typescript": "^18.0.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
+    "gh-pages": "^6.1.1",
     "prettier": "^3.3.3",
     "typescript": "^4.9.5"
   }

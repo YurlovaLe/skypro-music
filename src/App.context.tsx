@@ -16,11 +16,11 @@ export function AppProvider({ children }: {children: JSX.Element[]}) {
       user,
       login: (user) => {
         window.localStorage.setItem('user', JSON.stringify(user));
-        window.location.href = '/';
+        window.location.href = './';
       },
       logout: () => {
         window.localStorage.setItem('user', '');
-        window.location.href = '/';
+        window.location.reload();
       },
       updateUser: ({ access }) => {
         const updatedUser = { ...user, access };
