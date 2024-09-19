@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/skypro-music/static/js/main.d18c6458.js",
+    "index.html": "/skypro-music/index.html",
+    "main.d18c6458.js.map": "/skypro-music/static/js/main.d18c6458.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.d18c6458.js"
+  ]
+}
