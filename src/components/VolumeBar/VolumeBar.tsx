@@ -12,7 +12,7 @@ export function VolumeBar({
     <S.BarVolumeBlock>
       <S.BarVolumeImage>
         <S.BarVolumeSvg onClick={setVolumeMuted}>
-          <use xlinkHref={`/img/icon/sprite.svg#${isMuted ? 'icon-mute' : 'icon-volume'}`} />
+          <use xlinkHref={`img/icon/sprite.svg#${isMuted ? 'icon-mute' : 'icon-volume'}`} />
         </S.BarVolumeSvg>
       </S.BarVolumeImage>
       <RangeBar

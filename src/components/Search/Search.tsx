@@ -8,7 +8,7 @@ export function Search({ setNameSearch, nameSearch }: SearchProps) {
   return (
     <S.CenterBlockSearch>
       <S.SearchSvg>
-        <use xlinkHref="/img/icon/sprite.svg#icon-search" />
+        <use xlinkHref="img/icon/sprite.svg#icon-search" />
       </S.SearchSvg>
       <S.SearchText
         type="search"

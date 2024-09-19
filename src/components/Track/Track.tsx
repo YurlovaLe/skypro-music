@@ -29,7 +29,7 @@ export function Track({
             <S.TrackTitleCircle $isPlaying={isPlaying} />
           ) : (
             <S.TrackTitleSvg>
-              <use xlinkHref="/img/icon/sprite.svg#icon-note" />
+              <use xlinkHref="img/icon/sprite.svg#icon-note" />
             </S.TrackTitleSvg>
           )}
         </S.TrackTitleImage>
@@ -51,7 +51,7 @@ export function Track({
             onLikeClick(isFavorite, trackId);
           }}
         >
-          <use xlinkHref="/img/icon/sprite.svg#icon-like" />
+          <use xlinkHref="img/icon/sprite.svg#icon-like" />
         </S.TrackTimeSvg>
         <S.TrackTimeText>{timeInMin(duration)}</S.TrackTimeText>
       </S.TrackTime>

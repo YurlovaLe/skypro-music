@@ -110,7 +110,7 @@ export function Player({
             <S.PlayerControls>
               <S.PlayerBtn>
                 <S.PlayerBtnNextSvg onClick={handlePrev}>
-                  <use xlinkHref="/img/icon/sprite.svg#icon-prev" />
+                  <use xlinkHref="img/icon/sprite.svg#icon-prev" />
                 </S.PlayerBtnNextSvg>
               </S.PlayerBtn>
               <S.PlayerBtn>
@@ -120,20 +120,20 @@ export function Player({
                   <use
                     xlinkHref={
                       isPlaying
-                        ? '/img/icon/sprite.svg#icon-stop'
-                        : '/img/icon/sprite.svg#icon-play'
+                        ? 'img/icon/sprite.svg#icon-stop'
+                        : 'img/icon/sprite.svg#icon-play'
                     }
                   />
                 </S.PlayerBtnPlaySvg>
               </S.PlayerBtn>
               <S.PlayerBtn>
                 <S.PlayerBtnNextSvg onClick={handleNext}>
-                  <use xlinkHref="/img/icon/sprite.svg#icon-next" />
+                  <use xlinkHref="img/icon/sprite.svg#icon-next" />
                 </S.PlayerBtnNextSvg>
               </S.PlayerBtn>
               <S.PlayerBtn onClick={() => setIsRepeat(!isRepeat)}>
                 <S.PlayerBtnSvg $isUse={isRepeat}>
-                  <use xlinkHref="/img/icon/sprite.svg#icon-repeat" />
+                  <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
                 </S.PlayerBtnSvg>
               </S.PlayerBtn>
               <S.PlayerBtn>
@@ -141,19 +141,19 @@ export function Player({
                   $isUse={isShuffled}
                   onClick={toggleShufledPlaylist}
                 >
-                  <use xlinkHref="/img/icon/sprite.svg#icon-shuffle" />
+                  <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
                 </S.PlayerBtnSvg>
               </S.PlayerBtn>
             </S.PlayerControls>
 
             <S.PlayerTrackPlay>
               {isLoading ? (
-                <img src="/img/player_skeleton.png" alt="" />
+                <img src="img/player_skeleton.png" alt="" />
               ) : (
                 <S.TrackPlayContain>
                   <S.TrackPlayImage>
                     <S.TrackPlaySvg>
-                      <use xlinkHref="/img/icon/sprite.svg#icon-note" />
+                      <use xlinkHref="img/icon/sprite.svg#icon-note" />
                     </S.TrackPlaySvg>
                   </S.TrackPlayImage>
                   <S.TrackPlayAuthor>
@@ -168,7 +168,7 @@ export function Player({
                 $isFavorite={isTrackInFavorites}
                 onClick={() => handleLikeClick(isTrackInFavorites, currentTrack)}
               >
-                <use xlinkHref="/img/icon/sprite.svg#icon-like" />
+                <use xlinkHref="img/icon/sprite.svg#icon-like" />
               </S.TrackLikeSvg>
             </S.PlayerTrackPlay>
           </S.BarPlayer>

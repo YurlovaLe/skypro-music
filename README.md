@@ -1,5 +1,11 @@
 В проекте используются: TypeScript, React, RTK Query, Redux Toolkit, Styled components, Formik
 
+Ссылка на выложенное приложение: https://yurlovale.github.io/skypro-music/
+
+Пользователь для демонстрации: 
+login: test@test.com
+password: test1234
+
 ### Чек-лист
 - [x] Работает страница входа и регистрации
 

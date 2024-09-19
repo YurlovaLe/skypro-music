@@ -43,7 +43,7 @@ export function AuthPage() {
       <S.ModalForm onSubmit={handleSubmit}>
         <Link to="/login">
           <S.ModalLogo>
-            <S.ModalLogoImage src="/img/logo_modal.png" alt="logo" />
+            <S.ModalLogoImage src="img/logo_modal.png" alt="logo" />
           </S.ModalLogo>
         </Link>
         <S.Inputs>
